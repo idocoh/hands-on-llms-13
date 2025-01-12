@@ -1,19 +1,25 @@
-from typing import Dict, Optional, List
+import sys
+from typing import Dict, List, Optional
 
+sys.path.append("/home/ido/Documents/Ido/RUNI/LLM_ML/hands-on-llms-13/modules/q_and_a_dataset_generator")
+   
 import hashlib
-from pydantic import BaseModel
-from unstructured.partition.html import partition_html
-from unstructured.cleaners.core import clean, replace_unicode_quotes, clean_non_ascii_chars
-from unstructured.staging.huggingface import chunk_by_attention_window
-from unstructured.staging.huggingface import stage_for_transformers
-from transformers import AutoTokenizer, AutoModel
-from tqdm import tqdm
 
-from src.paths import DATA_DIR
+from pydantic import BaseModel
 from src.logger import get_console_logger
+from src.paths import DATA_DIR
+from tqdm import tqdm
+from transformers import AutoModel, AutoTokenizer
+from unstructured.cleaners.core import (
+    clean,
+    clean_non_ascii_chars,
+    replace_unicode_quotes,
+)
+from unstructured.partition.html import partition_html
+from unstructured.staging.huggingface import chunk_by_attention_window
 
 NEWS_FILE = DATA_DIR / 'news_2023-01-01_2023-01-05.json'
-QDRANT_COLLECTION_NAME = 'alpaca_news'
+QDRANT_COLLECTION_NAME = 'alpaca_financial_news'
 QDRANT_VECTOR_SIZE = 384
 
 logger = get_console_logger()
@@ -24,6 +30,7 @@ model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
 # init qdrant client and collection where we store the news
 from src.vector_db_api import get_qdrant_client, init_collection
+
 qdrant_client = get_qdrant_client()
 qdrant_client = init_collection(
     qdrant_client=qdrant_client,
