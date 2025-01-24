@@ -1,3 +1,6 @@
+import json
+import os
+import subprocess
 import time
 from typing import Any, Dict, List, Optional
 
@@ -93,12 +96,30 @@ class ContextExtractorChain(Chain):
         The vector store to search for matches.
     vector_collection : str
         The name of the collection to search in the vector store.
+    output_key : str
+        The key under which the context is returned.
     """
 
     top_k: int = 1
     embedding_model: EmbeddingModelSingleton
     vector_store: qdrant_client.QdrantClient
     vector_collection: str
+    output_key: str = "context"  # Default value for output_key
+
+    def __init__(self, embedding_model, vector_store, vector_collection, top_k, output_key="context"):
+        dict={
+            "embedding_model": embedding_model,
+            "vector_store": vector_store,
+            "vector_collection": vector_collection,
+            "top_k": top_k,
+            "output_key": output_key
+        }
+        super().__init__(**dict)
+        self.embedding_model = embedding_model
+        self.vector_store = vector_store
+        self.vector_collection = vector_collection
+        self.top_k = top_k
+        self.output_key = output_key
 
     @property
     def input_keys(self) -> List[str]:
@@ -106,33 +127,31 @@ class ContextExtractorChain(Chain):
 
     @property
     def output_keys(self) -> List[str]:
-        return ["context"]
+        return [self.output_key]
 
     def _call(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
         _, quest_key = self.input_keys
         question_str = inputs[quest_key]
 
+        # Clean and encode the question
         cleaned_question = self.clean(question_str)
-        # TODO: Instead of cutting the question at 'max_input_length', chunk the question in 'max_input_length' chunks,
-        # pass them through the model and average the embeddings.
         cleaned_question = cleaned_question[: self.embedding_model.max_input_length]
         embeddings = self.embedding_model(cleaned_question)
 
-        # TODO: Using the metadata, use the filter to take into consideration only the news from the last 24 hours
-        # (or other time frame).
+        # Search the vector store
         matches = self.vector_store.search(
             query_vector=embeddings,
             k=self.top_k,
             collection_name=self.vector_collection,
         )
 
+        # Compile the context from the matches
         context = ""
         for match in matches:
             context += match.payload["summary"] + "\n"
 
-        return {
-            "context": context,
-        }
+        # Return the context in a dictionary with the specified output key
+        return {self.output_key: context}
 
     def clean(self, question: str) -> str:
         """
@@ -165,7 +184,7 @@ class FinancialBotQAChain(Chain):
     def input_keys(self) -> List[str]:
         """Returns a list of input keys for the chain"""
 
-        return ["context"]
+        return ["current_context"]
 
     @property
     def output_keys(self) -> List[str]:
@@ -181,12 +200,13 @@ class FinancialBotQAChain(Chain):
         """Calls the chain with the given inputs and returns the output"""
 
         inputs = self.clean(inputs)
+        print(inputs.keys())
         prompt = self.template.format_infer(
             {
                 "user_context": inputs["about_me"],
-                "news_context": inputs["context"],
+                "news_context": inputs["current_context"],
                 "chat_history": inputs["chat_history"],
-                "question": inputs["question"],
+                "question": inputs["question"] + inputs["reasoning"],
             }
         )
 
@@ -224,3 +244,49 @@ class FinancialBotQAChain(Chain):
             inputs[key] = cleaned_input
 
         return inputs
+
+class OptimizePromptChain(Chain):
+    """This custom chain uses dspy for APE."""
+
+    target_directory = "/home/ido/Documents/Ido/RUNI/LLM_ML/hands-on-llms-13/modules/financial_bot/financial_bot"
+    command_base = ["python", "dspy_ape.py", "--prompt"]
+
+    @property
+    def input_keys(self) -> List[str]:
+        return ["about_me", "old_context", "question"]
+
+    @property
+    def output_keys(self) -> List[str]:
+        #return ["about_me", "context", "question"]
+        return []
+    
+    def _call(
+        self,
+        inputs: Dict[str, Any],
+        run_manager: Optional[CallbackManagerForChainRun] = None,
+    ) -> Dict[str, Any]:
+        """Calls the chain with the given inputs and returns the output"""
+
+        # Convert the dictionary to a JSON string
+        prompt = json.dumps({k: inputs[k] for k in self.input_keys})
+        print(prompt)
+        command = self.command_base + [prompt]
+
+        # Copy the current environment and modify it for the virtual environment
+        copy_current_env = os.environ.copy()
+        venv_path = "/home/ido/Documents/Ido/RUNI/LLM_ML/hands-on-llms-13/dspy_env"
+        copy_current_env["VIRTUAL_ENV"] = venv_path
+        copy_current_env["PATH"] = os.path.join(venv_path, "bin") + os.pathsep + copy_current_env["PATH"]
+
+        result = subprocess.run(
+            command,
+            cwd=self.target_directory,
+            capture_output=True,
+            text=True,
+            env=copy_current_env,
+        )
+        #TODO: Maybe add some error handling based on subprocess error code.
+        print("STDOUT:\n", result.stdout)
+        print("STDERR:\n", result.stderr)
+        print("Return code:", result.returncode)
+        return json.loads(result.stdout)
