@@ -31,6 +31,15 @@ run:
 		--history "[[\"What is your opinion on investing in startup companies?\", \"Startup investments can be very lucrative, but they also come with a high degree of risk. It is important to do your due diligence and research the company thoroughly before investing.\"]]" \
 		--debug False
 
+run_test:
+	@echo "Running financial_bot..."
+
+	poetry run python -m tools.bot \
+		--about_me " I am a 34 year old finanShould I consider investing in stocks from the Tech Sector?ce professional with a strong analytical background. I'm interested in diversifying my portfolio with alternative investments." \
+		--question "Should I explore cryptocurrency investments to achieve this diversification?" \
+		--history "[]" \
+		--debug False
+
 run_dev:
 	@echo "Running financial_bot [Dev Mode]..."
 
