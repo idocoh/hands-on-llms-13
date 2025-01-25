@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import dspy
+from dotenv import load_dotenv
 from train_dspy_optimizer import CoT
 
 lm = dspy.LM("openai/gpt-4o-mini")
@@ -14,6 +15,8 @@ OPTIMIZER_PATH = os.path.join(ROOT_DIR, "mipro_zeroshot_optimized_v0.json")
 
 PROMPT_KEYS = ["about_me", "context", "question"]
 
+load_dotenv()
+openai_key = os.getenv("OPENAI_API_KEY")
 
 def validate_json(json_str: str) -> dict:
     try:
@@ -47,7 +50,7 @@ def dspy_perdict():
 
     prompt["reasoning"] = result.reasoning
     prompt["dspy_answer"] = result.answer
-    prompt["question"] = prompt["question"] + "\n" + f"You can use the following expert answer as a reference: {result.answer}"
+    prompt["question"] = prompt["question"] + f"\nYou can use the following expert answer as a reference {result.answer}, given the experts resoning is: {result.reasoning}" + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided"
 
     print(json.dumps(prompt, indent=4))
 
