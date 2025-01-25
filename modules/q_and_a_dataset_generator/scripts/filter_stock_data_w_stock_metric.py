@@ -1,11 +1,10 @@
 import json
 import re
-import yfinance as yf
-from datetime import datetime
 import traceback as tb
-from pathlib import Path
-from src.paths import DATA_DIR
+from datetime import datetime
 
+import yfinance as yf
+from src.paths import DATA_DIR
 
 
 def get_sp500_baseline(date_recommended: str, last_date: str, verbose: bool = False) -> float:
@@ -44,7 +43,7 @@ def get_sp500_baseline(date_recommended: str, last_date: str, verbose: bool = Fa
 
         return sp500_annualized_return
 
-    except Exception as e:
+    except Exception:
         print("Error fetching S&P 500 baseline return.")
         tb.print_exc()
         return 0.1  # Default to 10% if data fetch fails
@@ -107,7 +106,7 @@ def check_stock_performance(stock_name: str, date_recommended: str, last_date: s
         print(f"Did {stock_name} outperform the S&P 500? {outperforms_baseline}\n")
         return outperforms_baseline
 
-    except Exception as e:
+    except Exception:
         print("Error while running check_stock_performance()")
         tb.print_exc()
         return False
