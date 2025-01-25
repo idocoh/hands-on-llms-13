@@ -275,6 +275,7 @@ class OptimizePromptChain(Chain):
 
         # Copy the current environment and modify it for the virtual environment
         copy_current_env = os.environ.copy()
+        print(f"VIRTUAL_ENV for dspy: {self.venv_path}")
         copy_current_env["VIRTUAL_ENV"] = self.venv_path
         copy_current_env["PATH"] = os.path.join(self.venv_path, "bin") + os.pathsep + copy_current_env["PATH"]
 
@@ -285,8 +286,15 @@ class OptimizePromptChain(Chain):
             text=True,
             env=copy_current_env,
         )
-        #TODO: Maybe add some error handling based on subprocess error code.
         print("STDOUT:\n", result.stdout)
         print("STDERR:\n", result.stderr)
         print("Return code:", result.returncode)
-        return json.loads(result.stdout)
+        try:
+            if result.stdout.strip():  # Check if the output is not empty
+                return json.loads(result.stdout)
+            else:
+                # Handle the case where the output is empty
+                raise ValueError("Received empty output from the command.")
+        except json.JSONDecodeError as e:
+            # Handle JSON decoding errors
+            raise ValueError(f"Failed to decode JSON: {e}") from e

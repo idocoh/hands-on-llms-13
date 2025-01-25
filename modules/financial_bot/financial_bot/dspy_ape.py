@@ -9,19 +9,16 @@ from dspy.teleprompt import MIPROv2
 lm = dspy.LM("openai/gpt-4o-mini")
 dspy.configure(lm=lm)
 
-OPTIMIZER_PATH = "mipro_zeroshot_optimized_v0.json"
+OPTIMIZER_PATH = "modules/financial_bot/financial_bot/mipro_zeroshot_optimized_v0.json"
 
-# Mock implementation of our_metric
-class MockMetric:
-    def __init__(self):
-        pass
+a = 0.01
 
-    def evaluate(self, program_output, reference_output):
-        # Simulate evaluation logic with a random score
-        return random.uniform(0, 1)  # Return a random score between 0 and 1
+def our_metric(gold, pred, trace=None):
+    global a
+    a += 0.1
+    # Simulate evaluation logic with a random score
+    return a
 
-# Use the mock metric in place of the actual metric
-our_metric = MockMetric()
 
 # Define or import evaluate function
 def evaluate(program, devset):
@@ -29,8 +26,8 @@ def evaluate(program, devset):
     pass
 
 class CoT(dspy.Module):
-    def __init__(self):
-        super().__init__()
+    def _init_(self):
+        super()._init_()
         self.prog = dspy.ChainOfThought("question -> answer")
 
     def forward(self, question):
@@ -62,7 +59,21 @@ def optimize_prompt(program, trainset, devset):
 def train_dspy_optimizer(data_path):
     # Load data from JSON file
     with open(data_path, 'r') as f:
-        data = json.load(f)
+        json_data = json.load(f)
+
+    # convert data to a list
+    data = []
+
+    
+    # official_train.append(dict(question=question, gold_reasoning=gold_reasoning, answer=answer))
+    for example in json_data:
+        # question = example["about_me"].split("\n")[-1]  # Extracts the question
+        question = example["about_me"] 
+        gold_reasoning = example["context"]  # Context is treated as the reasoning
+        answer = example["response"]  # The response is treated as the answer
+
+        data.append(dict(question=question, gold_reasoning=gold_reasoning, answer=answer))
+    
 
     # Shuffle data to ensure randomness
     random.shuffle(data)
@@ -72,6 +83,9 @@ def train_dspy_optimizer(data_path):
     trainset = data[:split_index]
     devset = data[split_index:]
 
+    trainset = [dspy.Example(**x).with_inputs("question") for x in trainset]
+    devset = [dspy.Example(**x).with_inputs("question") for x in devset]
+        
     program = CoT()
     zeroshot_optimized_program = optimize_prompt(program, trainset, devset)
     zeroshot_optimized_program.save(OPTIMIZER_PATH)
@@ -103,19 +117,20 @@ def main():
     if not Path(OPTIMIZER_PATH).exists():
         raise FileNotFoundError(f"Optimizer not found at {OPTIMIZER_PATH}")
 
-
-    cot = dspy.ChainOfThought("question -> answer")
+    cot = CoT()
     cot.load(OPTIMIZER_PATH)
 
     # Optimize the prompt
     question = prompt["about_me"] + " " + prompt["context"] + " " + prompt["question"]
     result = cot(question=question)
-    print(result)
+    # print(result)
 
-    prompt["reasoning"] = f"You can use the following expert answer as a reference: {result.answer}"
+    # prompt["reasoning"] = "you should look at the news to answer this question"
+    prompt["question"] = prompt["question"] + "\n" + f"You can use the following expert answer as a reference: {result.answer}"
 
     print(json.dumps(prompt, indent=4))
 
-if __name__ == "__main__":
-    data_path = "modules/q_and_a_dataset_generator/data/filtered_training_data_based_on_stock_metric.json"
-    train_dspy_optimizer(data_path)
+if __name__ == "_main_":
+    main()
+    # data_path = "modules/q_and_a_dataset_generator/data/filtered_training_data_based_on_stock_metric.json"
+    # train_dspy_optimizer(data_path)
