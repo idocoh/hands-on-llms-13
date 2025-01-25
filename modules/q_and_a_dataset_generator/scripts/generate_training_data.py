@@ -437,7 +437,8 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def build_prompt(example: Dict) -> str:
     return PROMPT_TEMPLATE.format(
-        ABOUT_ME=example["about_me"],
+        ABOUT_ME=example["about_me"] + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided and that you give a <Stock Ticker> in the right format, such as AMZN or AAPL, without the company name in that specific space.",
+        # ABOUT_ME=example["about_me"],
         CONTEXT=example["context"],
     )
 
@@ -446,7 +447,9 @@ def run():
     output = []
     for example in tqdm(EXAMPLES):
         prompt = build_prompt(example)
-        logger.info(f"{prompt=}")
+        # remove "" from string
+        # log just the about me
+        logger.info(f"{example['about_me']}")
 
         response = openai.Completion.create(
             engine="gpt-3.5-turbo-instruct",     # "text-davinci-003",    # See: https://github.com/iusztinpaul/hands-on-llms/issues/87
@@ -463,9 +466,10 @@ def run():
     # save output as json file
     import json
 
-    with open(DATA_DIR / "training_data.json", "w") as f:
+    with open(DATA_DIR / "training_data_w_stocks.json", "w") as f:
         json.dump(output, f, indent=4)
 
 
 if __name__ == "__main__":
     run()
+
