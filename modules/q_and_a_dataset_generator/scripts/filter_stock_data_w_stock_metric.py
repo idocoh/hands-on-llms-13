@@ -151,8 +151,8 @@ def print_questions_and_recommendations():
             continue  # Skip invalid stock recommendations
         
         # Assume dates for now
-        date_recommended = "2023-01-01"
-        last_date = "2023-12-31"
+        date_recommended = "2023-08-21"
+        last_date = "2024-08-21"
 
         # Check if the stock outperformed the S&P 500
         if not check_stock_performance(stock_recommendation, date_recommended, last_date, verbose=False):
@@ -179,7 +179,7 @@ def print_questions_and_recommendations():
 if __name__ == "__main__":
     
     # Load the dataset
-    file_path = DATA_DIR / "training_data_w_stocks.json"
+    file_path = DATA_DIR / "train_data_w_stocks.json"
     output_file_path = DATA_DIR / "filtered_training_data_based_on_stock_metric.json"
-
+    
     print_questions_and_recommendations()
