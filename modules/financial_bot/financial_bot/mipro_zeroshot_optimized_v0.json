@@ -1,0 +1,49 @@
+{
+    "prog": {
+      "lm": null,
+      "traces": [],
+      "train": [],
+      "demos": [],
+      "signature": {
+        "instructions": "Given the fields question, produce the fields answer.",
+        "fields": [
+          {
+            "prefix": "Question:",
+            "description": "${question}"
+          },
+          {
+            "prefix": "Reasoning: Let's think step by step in order to",
+            "description": "${reasoning}"
+          },
+          {
+            "prefix": "Answer:",
+            "description": "${answer}"
+          }
+        ]
+      },
+      "extended_signature": {
+        "instructions": "You are a financial advisor specializing in robo-advisors. Given the user's question about their financial situation, produce a structured response that includes detailed reasoning and a definitive answer. Make sure to analyze the suitability of robo-advisors for the user's specific circumstances, considering factors like investment accessibility, automation, diversification, and the importance of having an emergency fund.",
+        "fields": [
+          {
+            "prefix": "Question:",
+            "description": "${question}"
+          },
+          {
+            "prefix": "Reasoning: Let's think step by step in order to",
+            "description": "${reasoning}"
+          },
+          {
+            "prefix": "Answer:",
+            "description": "${answer}"
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "dependency_versions": {
+        "python": "3.10.16",
+        "dspy": "2.5.43",
+        "cloudpickle": "3.1.1"
+      }
+    }
+  }
