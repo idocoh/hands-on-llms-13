@@ -177,7 +177,7 @@ class FinancialBot:
             """
             [about: str][question: str] > ContextChain > 
             [about: str][question:str] + [context: str] > OptimizePromptChain >
-            [optimized_prompt: str] + [context: str] > FinancialChain > 
+            [about: str][question:str] + [context: str] > FinancialChain > 
             [answer: str]
             """
         )

@@ -1,10 +1,11 @@
 import argparse
 import json
-import random
+import os
 from pathlib import Path
 
 import dspy
-from dspy.teleprompt import MIPROv2
+from dotenv import load_dotenv
+from train_dspy_optimizer import CoT
 
 from dspy.datasets.gsm8k import GSM8K, gsm8k_metric
 
@@ -120,6 +121,9 @@ def train_dspy_optimizer(data_path):
 
 PROMPT_KEYS = ["about_me", "context", "question"]
 
+load_dotenv()
+openai_key = os.getenv("OPENAI_API_KEY")
+
 def validate_json(json_str: str) -> dict:
     try:
         prompt = json.loads(json_str)
@@ -137,23 +141,31 @@ def parse_args():
                         help="The prompt to optimize.")
     return parser.parse_args()
 
-def main():
+def dspy_perdict():
     args = parse_args()
     prompt: dict = args.prompt
     
     if not Path(OPTIMIZER_PATH).exists():
         raise FileNotFoundError(f"Optimizer not found at {OPTIMIZER_PATH}")
 
-
-    cot = dspy.ChainOfThought("question -> answer")
+    cot = CoT()
     cot.load(OPTIMIZER_PATH)
 
-    # Optimize the prompt
     question = prompt["about_me"] + " " + prompt["context"] + " " + prompt["question"]
     result = cot(question=question)
-    print(result)
 
-    prompt["reasoning"] = f"You can use the following expert answer as a reference: {result.answer}"
+    prompt["reasoning"] = result.reasoning
+    prompt["dspy_answer"] = result.answer
+    prompt["question"] = prompt["question"] + f"\nYou can use the following expert answer as a reference {result.answer}, given the experts resoning is: {result.reasoning}" + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided"
+
+    print(json.dumps(prompt, indent=4))
+
+
+def mock_dspy_perdict():
+    args = parse_args()
+    prompt: dict = args.prompt
+
+    prompt["reasoning"] = "you should look at the news to answer this question"
 
     print(json.dumps(prompt, indent=4))
 
@@ -181,3 +193,6 @@ if __name__ == "__main__":
     #     print(f"Gold Answer: {gold}")
     #     print(f"Predicted Answer: {pred}")
     #     print(f"Cosine Similarity: {our_metric(gold, pred):.2f}")
+    
+    
+    # dspy_perdict()
