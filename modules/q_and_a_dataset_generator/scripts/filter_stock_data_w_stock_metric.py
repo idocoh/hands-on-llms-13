@@ -177,8 +177,15 @@ def print_questions_and_recommendations():
 
 if __name__ == "__main__":
     
-    # Load the dataset
-    file_path = DATA_DIR / "training_data_w_stocks.json"
-    output_file_path = DATA_DIR / "filtered_training_data_based_on_stock_metric.json"
+    # # Load the dataset
+    # file_path = DATA_DIR / "train_data_w_stocks.json"
+    # output_file_path = DATA_DIR / "filtered_training_data_based_on_stock_metric.json"
+    
+    # print_questions_and_recommendations()
 
-    print_questions_and_recommendations()
+    import dspy
+    from dspy.chain_of_thought import ChainOfThought as CoT
+    # cot = dspy.ChainOfThought("question -> answer")
+    
+    cot = CoT() #dspy.ChainOfThought("question -> answer")
+    cot.load("/home/devel/temp/school/llmops/hands-on-llms-13/mipro_zeroshot_optimized_v0.json")

@@ -5,6 +5,8 @@ import openai
 from src.logger import get_console_logger
 from src.paths import DATA_DIR
 from tqdm import tqdm
+import json
+import random
 
 logger = get_console_logger()
 
@@ -445,31 +447,57 @@ def build_prompt(example: Dict) -> str:
 
 def run():
     output = []
+    client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
     for example in tqdm(EXAMPLES):
-        prompt = build_prompt(example)
-        # remove "" from string
-        # log just the about me
-        logger.info(f"{example['about_me']}")
+        for i in range(2):
+            prompt = build_prompt(example)
+            # remove "" from string
+            # log just the about me
+            logger.info(f"{example['about_me']}")
 
-        response = openai.Completion.create(
-            engine="gpt-3.5-turbo-instruct",     # "text-davinci-003",    # See: https://github.com/iusztinpaul/hands-on-llms/issues/87
-            prompt=prompt,
-            temperature=0,
-            max_tokens=100,
-        )
+            # response = openai.Completion.create(
+            #     engine="gpt-3.5-turbo-instruct",     # "text-davinci-003",    # See: https://github.com/iusztinpaul/hands-on-llms/issues/87
+            #     prompt=prompt,
+            #     # temperature=0,
+            #     temperature=0.6, # Slight variation, but responses remain focused.
+            #     max_tokens=100,
+            # )
+            # response = response["choices"][0]["text"]
 
-        response = response["choices"][0]["text"]
-        logger.info(f"{response=}")
+            # logger.info(f"{response=}")
 
-        output.append({**example, "response": response})
+            # output.append({**example, "response": response})
+            
+            response = client.chat.completions.create(
+                model="gpt-4o",  # Upgraded to GPT-4 Omni
+                messages=[
+                    {"role": "system", "content": "You are an expert in stock and crypto markets, providing investment advice."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.6,  # Slight variation, but responses remain focused.
+                max_tokens=200,
+            )
+            
+            generated_text = response.choices[0].message.content
 
+            logger.info(f"{generated_text=}")
+
+            output.append({**example, "response": generated_text})
+
+    # split to train and val randomly
+    random.shuffle(output)
+    split = int(0.8 * len(output))
+    train_data = output[:split]
+    val_data = output[split:]
+    
     # save output as json file
-    import json
-
     with open(DATA_DIR / "training_data_w_stocks.json", "w") as f:
-        json.dump(output, f, indent=4)
+        json.dump(train_data, f, indent=4)
+        
+    with open(DATA_DIR / "validation_data_w_stocks.json", "w") as f:
+        json.dump(val_data, f, indent=4)
 
 
 if __name__ == "__main__":
     run()
-
