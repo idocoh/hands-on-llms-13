@@ -248,8 +248,8 @@ class FinancialBotQAChain(Chain):
 class OptimizePromptChain(Chain):
     """This custom chain uses dspy for APE."""
 
-    venv_path = "/home/ido/Documents/Ido/RUNI/LLM_ML/hands-on-llms-13/.venv"
-    target_directory = "/home/ido/Documents/Ido/RUNI/LLM_ML/hands-on-llms-13/modules/financial_bot/financial_bot"
+    venv_path = "/home/student/hands-on-llms-13/modules/financial_bot/dspy_env"
+    target_directory = "/home/student/hands-on-llms-13/modules/financial_bot/financial_bot"
     command_base = ["python", "dspy_ape.py", "--prompt"]
 
     @property

@@ -16,8 +16,6 @@ lm = dspy.LM("openai/gpt-4o-mini")
 dspy.configure(lm=lm)
 
 
-
-
 # Initialize embedding model once (to avoid redundant loading)
 embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -118,6 +116,8 @@ def train_dspy_optimizer(data_path):
     zeroshot_optimized_program = optimize_prompt(program, trainset, devset)
     zeroshot_optimized_program.save(OPTIMIZER_PATH)
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+OPTIMIZER_PATH = os.path.join(ROOT_DIR, "mipro_zeroshot_optimized_v2.json")
 
 PROMPT_KEYS = ["about_me", "context", "question"]
 
