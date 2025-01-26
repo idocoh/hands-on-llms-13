@@ -50,8 +50,9 @@ def dspy_perdict():
 
     prompt["reasoning"] = result.reasoning
     prompt["dspy_answer"] = result.answer
-    prompt["question"] = prompt["question"] + f"\nYou can use the following expert answer as a reference {result.answer}, given the experts resoning is: {result.reasoning}" + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided"
-
+    prompt["question"] = prompt["question"] + \
+        f"The experts told me that {result.answer}. This was based on the reasoning: {result.reasoning} and the context provided." + \
+        "\nPlease recommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>."
     print(json.dumps(prompt, indent=4))
 
 
