@@ -20,6 +20,10 @@ from transformers import (
 from financial_bot import constants
 from financial_bot.utils import MockedPipeline
 
+import openai
+from typing import Tuple
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -99,6 +103,54 @@ class StopOnTokens(StoppingCriteria):
                 return True
 
         return False
+
+def build_gpt_pipeline(
+    llm_model_id: str = "gpt-4o",
+    max_new_tokens: int = 128,
+    temperature: float = 0.7,
+    debug: bool = False
+) -> Tuple[callable, None]:
+    """
+    Builds a GPT-based pipeline for text generation using OpenAI API.
+
+    Args:
+        llm_model_id (str, optional): The OpenAI GPT model to use (e.g., "gpt-4o"). Defaults to "gpt-4o".
+        max_new_tokens (int, optional): The maximum number of new tokens to generate. Defaults to 128.
+        temperature (float, optional): The temperature to use for sampling. Defaults to 0.7.
+        debug (bool, optional): Whether to return a mocked response. Defaults to False.
+
+    Returns:
+        Tuple[callable, None]: A callable function that sends prompts to OpenAI API.
+    """
+
+    def gpt_generate(prompt: str) -> str:
+        """
+        Calls OpenAI's GPT API with the given prompt.
+
+        Args:
+            prompt (str): The input text for GPT.
+
+        Returns:
+            str: The generated response from GPT.
+        """
+        try:
+            response = openai.ChatCompletion.create(
+                model=llm_model_id,
+                messages=[
+                    {"role": "system", "content": "You are an AI assistant providing investment advice."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=temperature,
+                max_tokens=max_new_tokens,
+            )
+
+            return response["choices"][0]["message"]["content"].strip()
+
+        except Exception as e:
+            print(f"Error with OpenAI API: {e}")
+            return "Error generating response."
+
+    return gpt_generate, None  # None replaces the streamer since it's not needed for OpenAI API
 
 
 def build_huggingface_pipeline(

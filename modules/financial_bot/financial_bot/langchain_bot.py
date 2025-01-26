@@ -15,7 +15,7 @@ from financial_bot.chains import (
 )
 from financial_bot.embeddings import EmbeddingModelSingleton
 from financial_bot.handlers import CometLLMMonitoringHandler
-from financial_bot.models import build_huggingface_pipeline
+from financial_bot.models import build_huggingface_pipeline, build_gpt_pipeline
 from financial_bot.qdrant import build_qdrant_client
 from financial_bot.template import get_llm_template
 
@@ -72,15 +72,18 @@ class FinancialBot:
         self._embd_model = EmbeddingModelSingleton(
             cache_dir=model_cache_dir, device=embedding_model_device
         )
-        self._llm_agent, self._streamer = build_huggingface_pipeline(
-            llm_model_id=llm_model_id,
-            llm_lora_model_id=llm_qlora_model_id,
-            max_new_tokens=llm_inference_max_new_tokens,
-            temperature=llm_inference_temperature,
-            use_streamer=streaming,
-            cache_dir=model_cache_dir,
-            debug=debug,
-        )
+        # self._llm_agent, self._streamer = build_huggingface_pipeline(
+        #     llm_model_id=llm_model_id,
+        #     llm_lora_model_id=llm_qlora_model_id,
+        #     max_new_tokens=llm_inference_max_new_tokens,
+        #     temperature=llm_inference_temperature,
+        #     use_streamer=streaming,
+        #     cache_dir=model_cache_dir,
+        #     debug=debug,
+        # )
+        
+        self._llm_agent = build_gpt_pipeline(llm_model_id=llm_model_id)
+        self._streamer = None
         self.finbot_chain = self.build_chain()
 
     @property
