@@ -206,7 +206,7 @@ class FinancialBotQAChain(Chain):
                 "user_context": inputs["about_me"],
                 "news_context": inputs["context"],
                 "chat_history": inputs["chat_history"],
-                "question": inputs["question"] + inputs["reasoning"],
+                "question": inputs["question"],
             }
         )
 
@@ -270,7 +270,6 @@ class OptimizePromptChain(Chain):
 
         # Convert the dictionary to a JSON string
         prompt = json.dumps({k: inputs[k] for k in self.input_keys})
-        print(prompt)
         command = self.command_base + [prompt]
 
         # Copy the current environment and modify it for the virtual environment
