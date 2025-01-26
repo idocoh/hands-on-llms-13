@@ -1,14 +1,13 @@
 import json
 import os
 import subprocess
-import time
 from typing import Any, Dict, List, Optional
 
 import qdrant_client
 from langchain import chains
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
-from langchain.llms import HuggingFacePipeline
+from pydantic import PrivateAttr
 from unstructured.cleaners.core import (
     clean,
     clean_extra_whitespace,
@@ -18,7 +17,6 @@ from unstructured.cleaners.core import (
 )
 
 from financial_bot.embeddings import EmbeddingModelSingleton
-from financial_bot.template import PromptTemplate
 
 
 class StatelessMemorySequentialChain(chains.SequentialChain):
@@ -176,20 +174,21 @@ class ContextExtractorChain(Chain):
 
 class FinancialBotQAChain(Chain):
     """This custom chain handles LLM generation upon given prompt"""
+    
+    _openai_client: Any = PrivateAttr()
 
-    hf_pipeline: HuggingFacePipeline
-    template: PromptTemplate
+    def __init__(self, lm_function):
+        super().__init__()
+        self._openai_client = lm_function
 
     @property
     def input_keys(self) -> List[str]:
         """Returns a list of input keys for the chain"""
-
         return ["context"]
 
     @property
     def output_keys(self) -> List[str]:
         """Returns a list of output keys for the chain"""
-
         return ["answer"]
 
     def _call(
@@ -200,37 +199,9 @@ class FinancialBotQAChain(Chain):
         """Calls the chain with the given inputs and returns the output"""
 
         inputs = self.clean(inputs)
-        print(inputs.keys())
-        prompt = self.template.format_infer(
-            {
-                "user_context": inputs["about_me"],
-                "news_context": inputs["context"],
-                "chat_history": inputs["chat_history"],
-                "question": inputs["question"],
-            }
-        )
-
-        start_time = time.time()
-        response = self.hf_pipeline(prompt["prompt"])
-        end_time = time.time()
-        duration_milliseconds = (end_time - start_time) * 1000
-
-        if run_manager:
-            run_manager.on_chain_end(
-                outputs={
-                    "answer": response,
-                },
-                # TODO: Count tokens instead of using len().
-                metadata={
-                    "prompt": prompt["prompt"],
-                    "prompt_template_variables": prompt["payload"],
-                    "prompt_template": self.template.infer_raw_template,
-                    "usage.prompt_tokens": len(prompt["prompt"]),
-                    "usage.total_tokens": len(prompt["prompt"]) + len(response),
-                    "usage.actual_new_tokens": len(response),
-                    "duration_milliseconds": duration_milliseconds,
-                },
-            )
+        prompt = inputs["about_me"] + inputs["question"] + inputs["context"] + inputs["chat_history"]
+        # Use OpenAI client to generate a response
+        response = self._openai_client.gpt_generate(prompt)
 
         return {"answer": response}
 

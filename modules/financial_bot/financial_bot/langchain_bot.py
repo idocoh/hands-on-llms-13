@@ -1,5 +1,4 @@
 import logging
-import os
 from pathlib import Path
 from typing import Iterable, List, Tuple
 
@@ -14,8 +13,7 @@ from financial_bot.chains import (
     StatelessMemorySequentialChain,
 )
 from financial_bot.embeddings import EmbeddingModelSingleton
-from financial_bot.handlers import CometLLMMonitoringHandler
-from financial_bot.models import build_huggingface_pipeline
+from financial_bot.models import build_gpt_pipeline
 from financial_bot.qdrant import build_qdrant_client
 from financial_bot.template import get_llm_template
 
@@ -72,15 +70,18 @@ class FinancialBot:
         self._embd_model = EmbeddingModelSingleton(
             cache_dir=model_cache_dir, device=embedding_model_device
         )
-        self._llm_agent, self._streamer = build_huggingface_pipeline(
-            llm_model_id=llm_model_id,
-            llm_lora_model_id=llm_qlora_model_id,
-            max_new_tokens=llm_inference_max_new_tokens,
-            temperature=llm_inference_temperature,
-            use_streamer=streaming,
-            cache_dir=model_cache_dir,
-            debug=debug,
-        )
+        # self._llm_agent, self._streamer = build_huggingface_pipeline(
+        #     llm_model_id=llm_model_id,
+        #     llm_lora_model_id=llm_qlora_model_id,
+        #     max_new_tokens=llm_inference_max_new_tokens,
+        #     temperature=llm_inference_temperature,
+        #     use_streamer=streaming,
+        #     cache_dir=model_cache_dir,
+        #     debug=debug,
+        # )
+        
+        self._llm_agent = build_gpt_pipeline(llm_model_id=llm_model_id)
+        self._streamer = None
         self.finbot_chain = self.build_chain()
 
     @property
@@ -132,28 +133,28 @@ class FinancialBot:
         optimize_prompt_chain = OptimizePromptChain()
 
         logger.info("Building 3/4 - FinancialBotQAChain")
-        if self._debug:
-            callabacks = []
-        else:
-            try:
-                comet_project_name = os.environ["COMET_PROJECT_NAME"]
-            except KeyError:
-                raise RuntimeError(
-                    "Please set the COMET_PROJECT_NAME environment variable."
-                )
-            callabacks = [
-                CometLLMMonitoringHandler(
-                    project_name=f"{comet_project_name}-monitor-prompts",
-                    llm_model_id=self._llm_model_id,
-                    llm_qlora_model_id=self._llm_qlora_model_id,
-                    llm_inference_max_new_tokens=self._llm_inference_max_new_tokens,
-                    llm_inference_temperature=self._llm_inference_temperature,
-                )
-            ]
+        # if self._debug:
+        #     callabacks = []
+        # else:
+        #     try:
+        #         comet_project_name = os.environ["COMET_PROJECT_NAME"]
+        #     except KeyError:
+        #         raise RuntimeError(
+        #             "Please set the COMET_PROJECT_NAME environment variable."
+        #         )
+        #     callabacks = [
+        #         CometLLMMonitoringHandler(
+        #             project_name=f"{comet_project_name}-monitor-prompts",
+        #             llm_model_id=self._llm_model_id,
+        #             llm_qlora_model_id=self._llm_qlora_model_id,
+        #             llm_inference_max_new_tokens=self._llm_inference_max_new_tokens,
+        #             llm_inference_temperature=self._llm_inference_temperature,
+        #         )
+        #     ]
         llm_generator_chain = FinancialBotQAChain(
-            hf_pipeline=self._llm_agent,
-            template=self._llm_template,
-            callbacks=callabacks,
+            lm_function=self._llm_agent,
+            # template=self._llm_template,
+            # callbacks=callabacks,
         )
 
         logger.info("Building 4/4 - Connecting chains into SequentialChain")
