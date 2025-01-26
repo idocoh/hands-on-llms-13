@@ -139,7 +139,7 @@ class ContextExtractorChain(Chain):
         # Search the vector store
         matches = self.vector_store.search(
             query_vector=embeddings,
-            k=self.top_k,
+            limit=self.top_k,
             collection_name=self.vector_collection,
         )
 
@@ -249,6 +249,7 @@ class OptimizePromptChain(Chain):
         copy_current_env["VIRTUAL_ENV"] = self.venv_path
         copy_current_env["PATH"] = os.path.join(self.venv_path, "bin") + os.pathsep + copy_current_env["PATH"]
 
+        print(command)
         result = subprocess.run(
             command,
             cwd=self.target_directory,

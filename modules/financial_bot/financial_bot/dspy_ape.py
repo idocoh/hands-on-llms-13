@@ -4,12 +4,15 @@ import os
 from pathlib import Path
 
 import dspy
+from dspy.teleprompt import MIPROv2
 from dotenv import load_dotenv
 from train_dspy_optimizer import CoT
 
 from dspy.datasets.gsm8k import GSM8K, gsm8k_metric
 
 from sentence_transformers import SentenceTransformer, util
+
+import random
 
 
 lm = dspy.LM("openai/gpt-4o-mini")
@@ -118,6 +121,7 @@ def train_dspy_optimizer(data_path):
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 OPTIMIZER_PATH = os.path.join(ROOT_DIR, "mipro_zeroshot_optimized_v2.json")
+DATA_PATH = os.path.join(ROOT_DIR, "../../q_and_a_dataset_generator/data/filtered_training_data_based_on_stock_metric.json")
 
 PROMPT_KEYS = ["about_me", "context", "question"]
 
@@ -171,8 +175,9 @@ def mock_dspy_perdict():
     print(json.dumps(prompt, indent=4))
 
 if __name__ == "__main__":
+    print("In APE subprocess")
     OPTIMIZER_PATH = "mipro_zeroshot_optimized_v1.json"
-    data_path = "modules/q_and_a_dataset_generator/data/filtered_training_data_based_on_stock_metric.json"
+    data_path = DATA_PATH
     train_dspy_optimizer(data_path)
     
     # test_cases = [

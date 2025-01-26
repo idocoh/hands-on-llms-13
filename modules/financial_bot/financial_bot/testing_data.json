@@ -1,0 +1,14 @@
+[
+    {
+        "about_me": "I'm a 30 year old investor.\nI want to explore opportunities in emerging markets.",
+        "context": "Asian tech companies show rapid expansion and innovation.",
+        "response": "[Stock Recommendation]: TSM  \n[Justification]: Taiwan Semiconductor Manufacturing Company (TSM) is a leader in semiconductor production, crucial for tech innovation. Its strategic position in the global supply chain and ongoing expansion in advanced chip technologies align with the rapid growth and innovation in Asian tech markets.",
+        "question": "What's your opinion on investing in Asian stocks?"
+    },
+    {
+        "about_me": "I am a 45 year old small business owner.\nI have some extra funds and I'm considering investing in tech stocks.",
+        "context": "Amazon reports record-breaking Q2 revenue.\nRegulators announce increased scrutiny on big tech companies.\nJeff Bezos steps down as Amazon's CEO.",
+        "response": "[Stock Recommendation]: AMZN  \n[Justification]: Despite regulatory scrutiny and leadership change, Amazon's record-breaking Q2 revenue highlights its robust business model. Their diversification into cloud computing and logistics continues to drive growth, making it a resilient choice in the tech sector.",
+        "question": "What do you think about Amazon's future prospects?"
+    }
+]

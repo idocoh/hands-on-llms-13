@@ -25,6 +25,7 @@ beam-sdk = "0.15.9"
 gradio = "^3.48.0"
 unstructured = "^0.10.28"
 datasets = "^3.2.0"
+openai = "^1.60.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
