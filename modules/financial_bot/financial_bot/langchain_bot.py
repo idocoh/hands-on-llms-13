@@ -80,8 +80,7 @@ class FinancialBot:
         #     debug=debug,
         # )
         
-        self._llm_agent = build_gpt_pipeline(llm_model_id=llm_model_id)
-        self._streamer = None
+        self._llm_agent, self._streamer = build_gpt_pipeline(llm_model_id=llm_model_id)
         self.finbot_chain = self.build_chain()
 
     @property

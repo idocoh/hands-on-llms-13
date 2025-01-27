@@ -130,13 +130,15 @@ def build_gpt_pipeline(
         Returns:
             str: The generated response from GPT.
         """
+        full_prompt = (
+            "You are an AI assistant providing investment advice.\n"  # System message
+            + "User: " + prompt  # User message
+        )
+
         try:
-            response = openai.ChatCompletion.create(
+            response = openai.completions.create(
                 model=llm_model_id,
-                messages=[
-                    {"role": "system", "content": "You are an AI assistant providing investment advice."},
-                    {"role": "user", "content": prompt}
-                ],
+                prompt=full_prompt,
                 temperature=temperature,
                 max_tokens=max_new_tokens,
             )
@@ -148,6 +150,8 @@ def build_gpt_pipeline(
             return "Error generating response."
 
     return gpt_generate, None  # None replaces the streamer since it's not needed for OpenAI API
+
+
 
 
 def build_huggingface_pipeline(
