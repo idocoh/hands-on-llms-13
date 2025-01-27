@@ -102,7 +102,7 @@ class StopOnTokens(StoppingCriteria):
         return False
 
 def build_gpt_pipeline(
-    llm_model_id: str = "gpt-4o",
+    llm_model_id: str = "gpt-4o-mini",
     max_new_tokens: int = 128,
     temperature: float = 0.7,
     debug: bool = False
@@ -130,26 +130,25 @@ def build_gpt_pipeline(
         Returns:
             str: The generated response from GPT.
         """
-        full_prompt = (
-            "You are an AI assistant providing investment advice.\n"  # System message
-            + "User: " + prompt  # User message
-        )
 
         try:
-            response = openai.completions.create(
+            response = openai.chat.completions.create(
                 model=llm_model_id,
-                prompt=full_prompt,
+                messages=[
+                    {"role": "system", "content": "You are an AI assistant providing investment advice."},
+                    {"role": "user", "content": prompt}
+                ],
                 temperature=temperature,
                 max_tokens=max_new_tokens,
             )
 
-            return response["choices"][0]["message"]["content"].strip()
+            return response.choices[0].message.content.strip()
 
         except Exception as e:
             print(f"Error with OpenAI API: {e}")
             return "Error generating response."
 
-    return gpt_generate, None  # None replaces the streamer since it's not needed for OpenAI API
+    return gpt_generate, None  
 
 
 

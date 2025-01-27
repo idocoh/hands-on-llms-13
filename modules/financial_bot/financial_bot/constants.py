@@ -9,7 +9,7 @@ VECTOR_DB_OUTPUT_COLLECTION_NAME = "alpaca_financial_news"
 VECTOR_DB_SEARCH_TOPK = 1
 
 # == LLM Model ==
-LLM_MODEL_ID = "tiiuae/falcon-7b-instruct"
+LLM_MODEL_ID = "gpt-4o-mini" #"tiiuae/falcon-7b-instruct"
 LLM_QLORA_CHECKPOINT = "iusztinpaul/fin-falcon-7b-lora:1.0.5"
 
 

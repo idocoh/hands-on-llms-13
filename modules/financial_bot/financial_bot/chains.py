@@ -9,7 +9,6 @@ from langchain import chains
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
 from pydantic import PrivateAttr
-from langchain.llms import HuggingFacePipeline
 from unstructured.cleaners.core import (
     clean,
     clean_extra_whitespace,
@@ -19,7 +18,6 @@ from unstructured.cleaners.core import (
 )
 
 from financial_bot.embeddings import EmbeddingModelSingleton
-from financial_bot.template import PromptTemplate
 
 
 class StatelessMemorySequentialChain(chains.SequentialChain):
@@ -178,24 +176,20 @@ class ContextExtractorChain(Chain):
 class FinancialBotQAChain(Chain):
     """This custom chain handles LLM generation upon given prompt"""
 
-    _hf_pipeline: Any = PrivateAttr()
-    # template: PromptTemplate
-
+    lm_function: Any = PrivateAttr()
 
     def __init__(self, lm_function):
         super().__init__()
-        self._hf_pipeline = lm_function
+        self.lm_function = lm_function
 
     @property
     def input_keys(self) -> List[str]:
         """Returns a list of input keys for the chain"""
-
         return ["context"]
 
     @property
     def output_keys(self) -> List[str]:
         """Returns a list of output keys for the chain"""
-
         return ["answer"]
 
     def _call(
@@ -210,7 +204,7 @@ class FinancialBotQAChain(Chain):
         prompt = inputs["about_me"] + inputs["question"] + inputs["context"] + inputs["chat_history"]
 
         start_time = time.time()
-        response = self._hf_pipeline(prompt)
+        response = self.lm_function(prompt)
         end_time = time.time()
         duration_milliseconds = (end_time - start_time) * 1000
 
