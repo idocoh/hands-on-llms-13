@@ -1,0 +1,378 @@
+// Average Scores={'ragas_score': 0.021333333333333333, 'context_relevancy': 0.16666666666666663, 'context_recall': 0.2366666666666667, 'answer_similarity': 1.0, 'faithfulness': 0.19457431457431457}
+[
+    {
+        "input_payload": {
+            "about_me": "I'm a 26 year old investor.\nI want to explore opportunities in emerging markets.",
+            "question": "\nHow do you view the growth potential of Eastern European markets?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: **PKN Orlen** (Ticker: PKN)  \n[Justification]: PKN Orlen is a leading integrated oil and gas company in Poland, which is strategically positioned within the Eastern European market. The company is expanding its focus on renewable energy, aligning with the region's growth potential in this sector. With ongoing investments in infrastructure and a commitment to sustainable practices, PKN Orlen is well-positioned to benefit from the increasing demand for clean energy solutions. Additionally, as Poland continues to recover economically post-COVID-19, PKN stands to gain from both domestic growth and the broader integration of Eastern European",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.6,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.19999999999999996,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 34 year old entrepreneur.\nI'm interested in growth investments with a long-term horizon.",
+            "question": "\nDo you think investing in Middle Eastern tech startups is a good idea?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: STC Group (Saudi Telecom Company) [Justification]: STC Group is a leading telecommunications provider in Saudi Arabia, which is at the forefront of the region's tech transformation. The company is actively investing in digital services, cloud solutions, and smart city initiatives, aligning with the broader push towards technology and innovation in the Middle East. With the government's focus on diversifying the economy and fostering a tech ecosystem, STC stands to benefit from the growth of digital infrastructure and services. Additionally, as a stable player in a volatile market, it provides a balanced option for growth investors while mitigating some risks associated with investing in startups",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 30 year old investor.\nI'm intrigued by the growth of renewable energy in emerging markets.",
+            "question": "\nWhat's your take on investing in solar energy projects in Africa?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: ENPH [Justification]: Enphase Energy, Inc. (ENPH) is a leading provider of solar microinverters and energy management technology, which positions it well to benefit from the growth of solar energy projects globally, including in emerging markets like Africa. With the increasing demand for renewable energy solutions and supportive government policies in various African countries, Enphase is likely to see a rise in demand for its products as solar energy infrastructure expands. Additionally, the company's commitment to sustainability and innovative technology aligns with the ethical investing trends that are gaining momentum among investors. Furthermore, their strong financial performance and growth trajectory make it a compelling",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.19999999999999996,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 35-year-old software engineer with a passion for technology.\nI've been following the stock market for years and want to explore trading strategies.",
+            "question": "\nShould I invest in tech stocks?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: **NVIDIA Corporation (NVDA)**  \n[Justification]: NVIDIA is a leading player in the semiconductor industry, particularly known for its graphics processing units (GPUs) that are integral to artificial intelligence (AI), gaming, and data centers. Given your background in technology and your interest in emerging trends, NVIDIA stands out as a strong investment option due to its consistent innovation and leadership in AI technology. The company's products are essential for machine learning and AI applications, which are expected to drive growth across various sectors. Additionally, NVIDIA has shown impressive revenue growth and profitability, making it a compelling choice in the tech stock space.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.3333333333333333,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a retired financial analyst, and I have a diverse investment portfolio.\nI'm looking for ways to preserve and grow my wealth.",
+            "question": "\nHow can I protect my wealth against inflation?",
+            "to_load_history": []
+        },
+        "response": "**[Stock Recommendation]:** PG (Procter & Gamble Co.)  \n**[Justification]:** Procter & Gamble is a strong choice due to its robust portfolio of consumer staple products that have demonstrated consistent demand, even during inflationary periods. The company has significant pricing power, allowing it to pass increased costs onto consumers without a substantial impact on sales volume. This resilience makes it well-positioned to grow amidst rising prices, effectively helping to preserve wealth against inflation. Additionally, its solid dividend history provides a steady income stream, enhancing its appeal for retired investors looking to maintain purchasing power while avoiding volatility.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.6666666666666666,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a college student majoring in finance.\nI'm interested in learning about different investment opportunities.",
+            "question": "\nWhat are the risks of investing in cryptocurrencies?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: NVDA [Justification]: NVIDIA Corporation (NVDA) is a leading player in the semiconductor industry, particularly in graphics processing units (GPUs) which are essential for cryptocurrency mining and artificial intelligence applications. With the growing interest in AI and the potential resurgence of cryptocurrency markets, NVIDIA stands to benefit from increased demand for its products. Additionally, the company's strong financials, innovative technology, and strategic partnerships position it well for future growth, making it a solid investment choice in the current market environment.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 28 year old marketing professional.\nI have some savings and I'm interested in crypto investments.",
+            "question": "\nIs Bitcoin a good investment option?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: BTCUSD  \n[Justification]: Bitcoin (BTC) is a prominent cryptocurrency that has gained significant traction as an investment option, particularly among younger investors. It is often considered a digital gold, serving as a hedge against inflation and a store of value. Given your age and interest in crypto investments, allocating a small portion of your savings to Bitcoin could be a prudent strategy. Its price has shown substantial appreciation over time, and as adoption increases, many believe it has further growth potential. However, it's crucial to be aware of its volatility and risks, so ensure that this investment fits within a diversified portfolio where you are comfortable with",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 35 year old small business owner.\nI have a moderate risk tolerance and want to diversify my investments.",
+            "question": "\nShould I consider investing in renewable energy stocks?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: **NextEra Energy, Inc. (NEE)**  \n[Justification]: NextEra Energy is one of the largest producers of renewable energy from wind and solar in North America. The company has a strong track record of growth and is well-positioned to benefit from the increasing demand for clean energy as the world shifts away from fossil fuels. Their focus on innovation and investment in renewable projects aligns with the global transition toward sustainability. Furthermore, as a regulated utility, NextEra Energy provides a degree of stability, which can help mitigate some of the volatility typically associated with the renewable energy sector. Analysts have highlighted the potential for underv",
+        "scores": {
+            "context_relevancy": 0.5,
+            "context_recall": 0.6666666666666666,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.33333333333333337,
+            "ragas_score": 0.5333333333333333
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 40 year old healthcare professional planning for my children's education.\nI am risk-averse and prefer stable investment options.",
+            "question": "\nAre bonds or fixed-income securities suitable for my investment goals?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: N/A  \n[Justification]: Given your risk-averse nature and focus on stable investment options for your children's education, investing in stocks may not align with your investment goals. Instead, I recommend focusing on bonds and fixed-income securities, such as government bonds or high-quality corporate bonds, which provide stability and predictable income. If you're looking for a stock recommendation, consider investing in bond ETFs or mutual funds that focus on fixed-income securities. These can offer diversification and lower risk compared to individual stocks.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 31 year old teacher looking to supplement my income through investments.\nI'm interested in real estate but have limited knowledge in this area.",
+            "question": "\nShould I consider real estate investment trusts (REITs)?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: VNQ  \n[Justification]: VNQ is the Vanguard Real Estate ETF, which invests in a diverse portfolio of REITs across various sectors, including residential, commercial, and industrial properties. This makes it an excellent choice for you as a beginner in real estate investment. The fund provides liquidity since it's traded on major stock exchanges, and it offers diversification by holding a variety of REITs, reducing your risk. Additionally, Vanguard is known for its low expense ratios, which is beneficial for long-term investment. Moreover, the ETF's potential for dividend income aligns well with your goal of supplementing your income as a",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.5714285714285714,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 50 year old entrepreneur planning for retirement.\nI have experience in the tech industry and want to invest in individual stocks.",
+            "question": "\nShould I focus on well-established tech giants or emerging startups?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: AAPL  \n[Justification]: Apple Inc. (AAPL) is one of the most well-established tech giants, known for its strong financial performance, innovative product line, and loyal customer base. The company consistently generates significant revenue and profit, and it has a history of returning value to shareholders through dividends and stock buybacks. With its diversified product portfolio and services ecosystem, Apple is well-positioned to weather economic downturns, making it a stable choice as you approach retirement. Additionally, Apple's ongoing advancements in areas like augmented reality and healthcare technology may provide avenues for future growth, which aligns with your expertise in the tech",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 1.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.11111111111111116,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 26 year old graphic designer with a passion for sustainable living.\nI want to align my investments with my values.",
+            "question": "\nAre impact investing and socially responsible funds suitable options for me?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: TSLA  \n[Justification]: Tesla Inc. (TSLA) is a leading company in the electric vehicle (EV) and renewable energy sectors, making it a suitable investment choice for someone passionate about sustainable living. Tesla not only focuses on producing sustainable transportation solutions but also invests in solar energy and battery storage technologies. By investing in TSLA, you can support a company that aligns with your values of sustainability while also having the potential for significant financial returns given the growing demand for EVs and clean energy solutions. Additionally, Tesla's commitment to reducing carbon emissions and promoting renewable energy resonates with the principles of impact investing.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 1.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.33333333333333337,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 34 year old finance professional with a strong analytical background.\nI'm interested in diversifying my portfolio with alternative investments.",
+            "question": "\nShould I explore cryptocurrency investments to achieve this diversification?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: COIN  \n[Justification]: Coinbase Global Inc. (COIN) is a leading cryptocurrency exchange that stands to benefit from the growing interest in cryptocurrency investments. Given your analytical background, you can appreciate the potential for profit as more retail and institutional investors enter the crypto space. Coinbase\u2019s strong fundamentals, including its revenue generation from transaction fees and robust user base, position it well for growth. Additionally, as the cryptocurrency market continues to evolve and mature, Coinbase could be at the forefront of regulatory developments, making it a safe bet in the sector. Investing in COIN provides exposure to the cryptocurrency market while mitigating some direct risks",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 25 year old software engineer with a stable income.\nI want to start investing in stocks for long-term growth.",
+            "question": "\nWhere should I begin?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: VOO  \n[Justification]: The Vanguard S&P 500 ETF (VOO) is an excellent choice for a beginner investor looking for long-term growth. It tracks the performance of the S&P 500, which comprises 500 of the largest U.S. companies. This provides broad market exposure and diversification, reducing the risk associated with investing in individual stocks. Additionally, VOO has low expense ratios, making it cost-effective for long-term investing. Given your stable income and focus on long-term growth, investing in VOO aligns perfectly with your goals while allowing you to benefit from the potential appreciation of the overall U",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.4,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 35 year old software engineer.\nI'm looking to invest a lump sum amount for short-term gains.",
+            "question": "\nWhat's your opinion on the recent performance of Tesla?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: TSLA  \n[Justification]: Tesla Inc. has demonstrated strong demand for its Model Y and Model 3 vehicles, as evidenced by the recent price increase of C$1000 for these models. This price adjustment may suggest robust consumer interest and can potentially lead to increased revenue and profit margins in the short term. However, given the inherent volatility associated with investing in individual stocks, consider a diversified approach. If you prefer to capitalize on the growth potential in the electric vehicle sector while mitigating risks, look into ETFs focused on EV companies, which can provide exposure to Tesla and other key players in this rapidly growing market.",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 50 year old retiree.\nI want to ensure a stable income through my investments.",
+            "question": "\nDo you think dividend stocks are a good option at this time?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: Johnson & Johnson (JNJ)  \n[Justification]: Johnson & Johnson is a well-established company with a long history of paying and increasing its dividends, making it an attractive option for retirees seeking stable income. The company operates in the healthcare sector, which is typically less volatile and provides essential products, ensuring consistent demand. With a strong balance sheet and a commitment to returning value to shareholders, JNJ offers not only reliable dividend payments but also potential for long-term growth. Additionally, the company's diversified business model across pharmaceuticals, medical devices, and consumer health products helps mitigate risks associated with economic fluctuations.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.18181818181818177,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 29 year old medical student.\nI want to start investing but I'm concerned about market risks.",
+            "question": "\nWhat's your take on stablecoins in the cryptocurrency market?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: COIN  \n[Justification]: Coinbase (COIN) is a leading cryptocurrency exchange that facilitates trading of various cryptocurrencies, including stablecoins. As the stablecoin market is projected to grow significantly, with the possibility of representing 10% of the U.S. market, Coinbase stands to benefit from increased trading volume and user adoption of stablecoins. Moreover, as a publicly traded company, it provides a more regulated investment opportunity compared to direct cryptocurrency investments, aligning with your concerns about market risks. Additionally, Coinbase's strong brand presence and ongoing developments in expanding its services make it a compelling choice for exposure to the growing cryptocurrency ecosystem",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.4,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 32 year old marketing manager.\nI've been following the electric vehicle industry closely.",
+            "question": "\nDo you think it's a good idea to invest in a diverse EV portfolio?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: TSLA  \n[Justification]: Tesla (TSLA) remains a leading player in the electric vehicle market, with a strong brand presence and a proven track record of innovation. The company's focus on expanding production capacity and developing new models positions it well to capitalize on the growing demand for EVs. Additionally, Tesla's advancements in battery technology and a robust charging network enhance its competitive advantage. With over 1.3 million EVs sold in the U.S. in 2024, Tesla is likely to benefit significantly from the overall market growth, making it a solid choice for your diverse EV portfolio.",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 40 year old real estate agent.\nI'm looking to invest some savings in the financial markets.",
+            "question": "\nWhat's your opinion on gold as a safe-haven investment?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: GLD (SPDR Gold Shares)  \n[Justification]: GLD is an exchange-traded fund (ETF) that aims to track the price of gold bullion. This is a suitable choice for someone looking to incorporate gold into their portfolio without the need to physically store the metal. As a real estate agent, you may appreciate the stability that gold can provide during economic fluctuations, particularly given its historical performance as a safe-haven asset. By investing in GLD, you can gain exposure to gold's potential to hedge against inflation and market volatility while still maintaining the ability to diversify into equities and real estate for income generation",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.5,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.6666666666666667,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 25 year old graduate student.\nI want to explore investing in renewable energy companies.",
+            "question": "\nDo you think solar energy stocks are a good bet right now?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: ENPH [Justification]: Enphase Energy (ENPH) is a leading provider of solar microinverters, energy management technology, and storage systems. The company benefits from the growing demand for residential solar installations and has a strong market position due to its innovative technology that enhances the efficiency and reliability of solar energy systems. Enphase's financial performance has been robust, with significant revenue growth driven by the increasing adoption of solar energy solutions. Additionally, the company's focus on expanding its product offerings and entering new markets aligns well with the overall trend toward renewable energy. Given your long investment horizon and the positive outlook for solar energy,",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.19999999999999996,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 31 year old IT professional.\nI'm interested in long-term investments with sustainable growth.",
+            "question": "\nWhat's your take on investing in index funds?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: VOO  \n[Justification]: The Vanguard S&P 500 ETF (VOO) is an excellent choice for long-term sustainable growth. This index fund tracks the performance of the S&P 500, providing exposure to 500 of the largest U.S. companies across various sectors. Given your interest in sustainable growth, VOO offers diversification, lower costs with a competitive expense ratio, and the historical performance advantage of index funds. Additionally, it aligns with the investment philosophy of Peter Lynch, focusing on understanding market trends and benefiting from overall market growth. By investing in VOO, you can take advantage of compounding returns",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 22 year old recent college graduate.\nI want to start investing, but I'm concerned about economic uncertainty.",
+            "question": "\nWhat do you think about investing in blue-chip stocks?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: **Apple Inc. (AAPL)**  \n[Justification]: Apple is a quintessential blue-chip stock with a strong brand, substantial market share, and a consistent track record of revenue growth and profitability. The company has demonstrated resilience during economic fluctuations, maintaining robust sales and a loyal customer base. With a solid dividend yield, Apple provides an opportunity for income generation while also having significant growth potential, as it continues to innovate and expand its product offerings. Given the positive performance of the U.S. stock market in 2024 and analysts' expectations for continued growth, investing in Apple can be a strategic choice for building a stable",
+        "scores": {
+            "context_relevancy": 0.6666666666666666,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 55 year old business owner.\nI'm considering investing a portion of my profits in the commodities market.",
+            "question": "\nWhat's your opinion on the current oil market situation?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: CVX (Chevron Corporation)  \n[Justification]: Chevron is one of the largest integrated energy companies in the world, with a strong portfolio in both traditional oil and gas operations and a growing commitment to renewable energy initiatives. Given the current volatility in the oil market, Chevron offers a relatively stable investment due to its diversified operations, strong cash flow, and a robust balance sheet. The company has been known for its ability to adapt to changing market conditions and has made significant investments in renewable energy projects, positioning itself well for the transition towards sustainable energy sources. This can provide a hedge against the long-term risks associated with fossil fuel",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.16666666666666663,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 27 year old freelance writer.\nI have some savings and I'm considering investing in individual stocks.",
+            "question": "\nWhat's your opinion on the future of electric car companies?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: TSLA  \n[Justification]: Tesla (TSLA) remains a leading player in the electric vehicle market and has established a strong brand presence globally. The company's continuous innovation in battery technology, expansion into new markets, and ability to scale production effectively position it for future growth. Despite facing competition and market volatility, Tesla has a proven track record of adapting to challenges and maintaining profitability. Additionally, the recent developments in the industry and Tesla's strategic partnerships can enhance its competitive edge. Investing in Tesla provides exposure to a well-established company in the EV sector, making it a potentially rewarding choice for your portfolio. However, it's crucial",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.5,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 34 year old insurance agent.\nI'm interested in income-generating investments.",
+            "question": "\nWhat do you think about investing in high-yield bond funds?",
+            "to_load_history": []
+        },
+        "response": "[Stock Recommendation]: **TROW** (T. Rowe Price Group, Inc.)  \n[Justification]: T. Rowe Price is a well-established investment management firm that has a strong reputation for its active management strategies. Given the potential for rising bond yields, investors may look for alternative income sources, and TROW\u2019s focus on dividend-paying stocks positions it well in this environment. The company has a solid track record of increasing dividends, which can provide a steady income stream. Additionally, as interest rates rise, the demand for higher-yielding equities may increase, making TROW an attractive option for income-focused investors. Its diversified",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    }
+]
