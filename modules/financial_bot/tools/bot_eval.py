@@ -4,6 +4,7 @@ import logging
 import fire
 from datasets import Dataset
 
+from financial_bot.evaluate_stocks import get_stock_metrics
 from tools.bot import load_bot
 
 logger = logging.getLogger(__name__)
@@ -70,7 +71,10 @@ def run_local(
     count = 0
 
     results = []
-
+    rates = []
+    did_outperforms = []
+    date_start = "2024-01-21"
+    date_end = "2024-01-28"
     with open(testset_path, "r") as f:
         data = json.load(f)
         for elem in data:
@@ -81,6 +85,16 @@ def run_local(
             }
             output_context = bot.finbot_chain.chains[0].run(input_payload)
             response = bot.answer(**input_payload)
+            
+            rate, did_outperform = get_stock_metrics(response, date_start, date_end, verbose=False)
+            rates.append(rate)
+            did_outperforms.append(did_outperform)
+            
+            logger.info("Score=%s", evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics))
+
+            logger.info(f"Mean rate: {sum(rates)/len(rates)}")
+            logger.info(f"Mean outperforms: {sum(did_outperforms)/len(did_outperforms)}")
+    
             score = evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics)
             logger.info("Score=%s", score)
 
@@ -92,8 +106,12 @@ def run_local(
             # Store input_payload, response, and scores
             results.append({
                 "input_payload": input_payload,
+                "context": output_context,
+                "GT": elem["response"],
                 "response": response,
-                "scores": score
+                "scores": score,
+                "rate": rate,
+                "did_outperform": did_outperform
             })
 
     # Calculate averages
