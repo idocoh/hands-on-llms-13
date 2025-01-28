@@ -1,9 +1,7 @@
-import logging
 import json
+import logging
 
 import fire
-
-
 from datasets import Dataset
 
 from tools.bot import load_bot
@@ -46,14 +44,10 @@ def run_local(
 
     bot = load_bot(model_cache_dir=None)
     # Import ragas only after loading the environment variables inside load_bot()
-    from ragas.metrics import (
-        answer_correctness,
+    from ragas.metrics import (  # context_entity_recall,; context_relevancy,; context_utilization,
         answer_similarity,
-        #context_entity_recall,
         context_recall,
-        #context_relevancy,
-        #context_utilization,
-        faithfulness
+        faithfulness,
     )
     from ragas.metrics.context_precision import context_relevancy
     metrics = [
@@ -66,6 +60,17 @@ def run_local(
         faithfulness
     ]
 
+    total_scores = {
+        'ragas_score': 0.0,
+        'context_relevancy': 0.0,
+        'context_recall': 0.0,
+        'answer_similarity': 0.0,
+        'faithfulness': 0.0
+    }
+    count = 0
+
+    results = []
+
     with open(testset_path, "r") as f:
         data = json.load(f)
         for elem in data:
@@ -76,7 +81,28 @@ def run_local(
             }
             output_context = bot.finbot_chain.chains[0].run(input_payload)
             response = bot.answer(**input_payload)
-            logger.info("Score=%s", evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics))
+            score = evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics)
+            logger.info("Score=%s", score)
+
+            # Accumulate scores
+            for key in total_scores:
+                total_scores[key] += score.get(key, 0.0)
+            count += 1
+
+            # Store input_payload, response, and scores
+            results.append({
+                "input_payload": input_payload,
+                "response": response,
+                "scores": score
+            })
+
+    # Calculate averages
+    average_scores = {key: total / count for key, total in total_scores.items()}
+    logger.info("Average Scores=%s", average_scores)
+
+    # Write results to a JSON file
+    with open("results.json", "w") as outfile:
+        json.dump(results, outfile, indent=4)
 
     return response
 

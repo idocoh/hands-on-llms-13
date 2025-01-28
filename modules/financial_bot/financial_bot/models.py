@@ -130,9 +130,8 @@ def build_gpt_pipeline(
         Returns:
             str: The generated response from GPT.
         """
-
         try:
-            response = openai.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model=llm_model_id,
                 messages=[
                     {"role": "system", "content": "You are an AI assistant providing investment advice."},
@@ -142,13 +141,13 @@ def build_gpt_pipeline(
                 max_tokens=max_new_tokens,
             )
 
-            return response.choices[0].message.content.strip()
+            return response["choices"][0]["message"]["content"].strip()
 
         except Exception as e:
             print(f"Error with OpenAI API: {e}")
             return "Error generating response."
 
-    return gpt_generate, None  
+    return gpt_generate, None  # None replaces the streamer since it's not needed for OpenAI API
 
 
 

@@ -165,10 +165,14 @@ demo = gr.ChatInterface(
             label="About me",
         )
     ],
-    title="Your Personal Financial Assistant",
-    description="Ask me any financial or crypto market questions, and I will do my best to answer them.",
+    title="Finovate Financials",
+    description="Ask me any financial questions, and I will spotlight high-potential stocks and recommendations to outperform the market.",
     theme="soft",
     examples=[
+        [ 
+            "Should I consider investing in stocks from the Tech Sector?",
+            "I am a student and I have some money that I want to invest."
+        ],
         [
             "What's your opinion on investing in startup companies?",
             "I am a 30 year old graphic designer. I want to invest in something with potential for high returns.",

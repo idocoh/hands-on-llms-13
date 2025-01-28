@@ -1,0 +1,378 @@
+// Average Scores={'ragas_score': 0.040641711229946524, 'context_relevancy': 0.16666666666666663, 'context_recall': 0.21666666666666667, 'answer_similarity': 1.0, 'faithfulness': 0.4434920634920635}
+[
+    {
+        "input_payload": {
+            "about_me": "I'm a 26 year old investor.\nI want to explore opportunities in emerging markets.",
+            "question": "\nHow do you view the growth potential of Eastern European markets?",
+            "to_load_history": []
+        },
+        "response": "Investing in emerging markets can offer significant growth potential, and Eastern Europe presents a unique set of opportunities and challenges. Here are some key factors to consider when evaluating the growth potential of Eastern European markets:\n\n### Growth Potential\n1. **Economic Recovery**: Many Eastern European countries have shown resilience and recovery following the disruptions caused by the COVID-19 pandemic. Economic growth rates in these countries can be higher than those in more developed markets, driven by factors like increased consumer spending and investment in infrastructure.\n\n2. **EU Membership**: Countries within the European Union, such as Poland, Hungary, and the Czech Republic, benefit from access to EU",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.6,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 34 year old entrepreneur.\nI'm interested in growth investments with a long-term horizon.",
+            "question": "\nDo you think investing in Middle Eastern tech startups is a good idea?",
+            "to_load_history": []
+        },
+        "response": "Investing in Middle Eastern tech startups can be a compelling option, especially given the region's growing focus on innovation and technology. Here are some points to consider:\n\n1. **Growth Potential**: The Middle East, particularly countries like the UAE, Saudi Arabia, and Israel, has been making significant investments to diversify their economies away from oil. This includes a strong push toward technology and innovation, which can lead to high growth potential for tech startups.\n\n2. **Government Support**: Many governments in the region are actively supporting the startup ecosystem through funding, incubators, and favorable regulatory environments. Initiatives like Saudi Arabia's Vision 2030",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 30 year old investor.\nI'm intrigued by the growth of renewable energy in emerging markets.",
+            "question": "\nWhat's your take on investing in solar energy projects in Africa?",
+            "to_load_history": []
+        },
+        "response": "Investing in solar energy projects in Africa can be a compelling opportunity for several reasons:\n\n### 1. **Growing Energy Demand**:\n   - Many African countries are experiencing rapid urbanization and population growth, leading to an increasing demand for energy. Solar energy can help meet this demand in a sustainable manner.\n\n### 2. **Abundant Solar Resources**:\n   - Africa has some of the highest solar irradiance levels in the world, making it an ideal location for solar energy projects. This natural advantage can lead to higher efficiency and lower costs over time.\n\n### 3. **Energy Access**:\n   - A significant portion of the",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.5,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 35-year-old software engineer with a passion for technology.\nI've been following the stock market for years and want to explore trading strategies.",
+            "question": "\nShould I invest in tech stocks?",
+            "to_load_history": []
+        },
+        "response": "Investing in tech stocks can be a compelling option, especially given your background and passion for technology. Here are several factors to consider when deciding whether to invest in tech stocks:\n\n1. **Understanding the Sector**: As a software engineer, you likely have a better understanding of technology companies and their potential for growth compared to other sectors. This expertise can give you an edge in analyzing companies and making informed decisions.\n\n2. **Growth Potential**: The technology sector has historically shown strong growth potential, driven by innovation and increasing adoption of technology across various industries. However, growth can also lead to volatility, so be prepared for fluctuations in stock prices",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.3333333333333333,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a retired financial analyst, and I have a diverse investment portfolio.\nI'm looking for ways to preserve and grow my wealth.",
+            "question": "\nHow can I protect my wealth against inflation?",
+            "to_load_history": []
+        },
+        "response": "Preserving and growing wealth in the context of inflation requires a strategic approach. Here are several strategies you might consider to protect your wealth against inflation:\n\n1. **Invest in Real Assets**:\n   - **Real Estate**: Real estate often appreciates over time and can provide rental income that typically increases with inflation.\n   - **Commodities**: Investing in physical commodities like gold, silver, or other precious metals can serve as a hedge against inflation.\n   - **Infrastructure Investments**: These can include infrastructure funds or direct investments in projects, as they often have cash flows linked to inflation.\n\n2. **Inflation-Protected Securities**",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.6666666666666666,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a college student majoring in finance.\nI'm interested in learning about different investment opportunities.",
+            "question": "\nWhat are the risks of investing in cryptocurrencies?",
+            "to_load_history": []
+        },
+        "response": "Investing in cryptocurrencies can be exciting, but it also comes with a range of risks. Here are some key risks to consider:\n\n1. **Volatility**: Cryptocurrencies are known for their extreme price fluctuations. This volatility can lead to significant gains, but it can also result in substantial losses in a short period.\n\n2. **Regulatory Risks**: The regulatory environment for cryptocurrencies is still evolving. Governments around the world are considering various regulations that could impact the legality and use of cryptocurrencies, potentially leading to changes in market dynamics.\n\n3. **Security Risks**: While blockchain technology is generally secure, exchanges and wallets can be vulnerable",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.4444444444444444,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 28 year old marketing professional.\nI have some savings and I'm interested in crypto investments.",
+            "question": "\nIs Bitcoin a good investment option?",
+            "to_load_history": []
+        },
+        "response": "Investing in Bitcoin can be a compelling option, particularly for those interested in cryptocurrency, but it's essential to consider several factors before making your decision.\n\n### Pros of Investing in Bitcoin:\n1. **Store of Value**: Many investors view Bitcoin as a digital gold due to its scarcity and decentralized nature. It can serve as a hedge against inflation and currency devaluation.\n2. **Adoption and Institutional Interest**: Increasing acceptance of Bitcoin by institutions, companies, and even some governments can boost its legitimacy and price.\n3. **Potential for High Returns**: Historically, Bitcoin has shown significant price appreciation, although past performance is not indicative of",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 35 year old small business owner.\nI have a moderate risk tolerance and want to diversify my investments.",
+            "question": "\nShould I consider investing in renewable energy stocks?",
+            "to_load_history": []
+        },
+        "response": "Investing in renewable energy stocks can be a good option for diversifying your portfolio, especially given your moderate risk tolerance and interest in long-term growth sectors. Here are several factors to consider:\n\n1. **Growth Potential**: The renewable energy sector has significant growth potential as the world increasingly shifts towards sustainable energy sources. This trend is supported by government policies, technological advancements, and a growing public awareness of climate change.\n\n2. **Market Volatility**: While renewable energy stocks can offer growth, they can also be volatile. Factors such as changes in government policies, regulatory challenges, and market competition can impact stock prices. It\u2019s essential to",
+        "scores": {
+            "context_relevancy": 0.5,
+            "context_recall": 0.6666666666666666,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.25,
+            "ragas_score": 0.47058823529411764
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 40 year old healthcare professional planning for my children's education.\nI am risk-averse and prefer stable investment options.",
+            "question": "\nAre bonds or fixed-income securities suitable for my investment goals?",
+            "to_load_history": []
+        },
+        "response": "Given your risk-averse nature and focus on stable investment options for your children's education, bonds and fixed-income securities can indeed be suitable for your investment goals. Here are some points to consider:\n\n1. **Stability**: Bonds and fixed-income securities are generally considered safer than stocks, as they provide regular interest payments and return the principal amount at maturity. This can provide a steady income stream that can be useful when saving for educational expenses.\n\n2. **Types of Bonds**:\n   - **Government Bonds**: U.S. Treasury bonds are backed by the government and are considered one of the safest investments. They have lower yields compared to",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 31 year old teacher looking to supplement my income through investments.\nI'm interested in real estate but have limited knowledge in this area.",
+            "question": "\nShould I consider real estate investment trusts (REITs)?",
+            "to_load_history": []
+        },
+        "response": "Investing in Real Estate Investment Trusts (REITs) can be a good option for you, especially if you're looking to supplement your income without the complexities of direct real estate ownership. Here are some reasons to consider REITs and factors to keep in mind:\n\n### Benefits of REITs:\n\n1. **Diversification**: REITs allow you to invest in a diversified portfolio of real estate assets, which can mitigate risks associated with individual properties.\n\n2. **Liquidity**: Unlike physical real estate, which can take time to buy or sell, REITs are traded on major stock exchanges, providing liquidity and ease of",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 50 year old entrepreneur planning for retirement.\nI have experience in the tech industry and want to invest in individual stocks.",
+            "question": "\nShould I focus on well-established tech giants or emerging startups?",
+            "to_load_history": []
+        },
+        "response": "As a 50-year-old entrepreneur planning for retirement, your investment strategy should be aligned with your risk tolerance, time horizon, and financial goals. Here are some considerations for both well-established tech giants and emerging startups:\n\n### Well-Established Tech Giants:\n**Pros:**\n- **Stability**: Large companies tend to have more stable revenue streams and established market positions, which can provide a sense of security as you approach retirement.\n- **Dividends**: Many tech giants pay dividends, which can provide a source of income during retirement.\n- **Lower Volatility**: Established companies often experience less price volatility compared to startups, which",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 1.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 26 year old graphic designer with a passion for sustainable living.\nI want to align my investments with my values.",
+            "question": "\nAre impact investing and socially responsible funds suitable options for me?",
+            "to_load_history": []
+        },
+        "response": "Yes, impact investing and socially responsible funds are excellent options for someone like you, who wants to align their investments with their values, particularly in sustainable living.\n\n### Impact Investing\n- **Definition**: This strategy focuses on investments made with the intention of generating positive, measurable social and environmental impacts alongside a financial return.\n- **Suitability**: As a graphic designer passionate about sustainability, you can seek out companies or projects that promote eco-friendly practices, renewable energy, sustainable agriculture, and other initiatives that resonate with your values.\n\n### Socially Responsible Funds (SRI)\n- **Definition**: These funds invest in companies that meet certain environmental",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.5,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 34 year old finance professional with a strong analytical background.\nI'm interested in diversifying my portfolio with alternative investments.",
+            "question": "\nShould I explore cryptocurrency investments to achieve this diversification?",
+            "to_load_history": []
+        },
+        "response": "As a finance professional with a strong analytical background, you likely have the skills to evaluate alternative investments, including cryptocurrencies. Here are some considerations to help you decide if cryptocurrency investments align with your goal of diversifying your portfolio:\n\n1. **Volatility and Risk**: Cryptocurrencies are known for their extreme volatility. Prices can fluctuate significantly in a short period, which can lead to substantial gains or losses. Assess your risk tolerance and how much volatility you are willing to accept in your investment portfolio.\n\n2. **Research and Understanding**: Ensure you have a solid understanding of the cryptocurrency market, including the technology behind blockchain, different cryptocurrencies, and",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.7142857142857143,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 25 year old software engineer with a stable income.\nI want to start investing in stocks for long-term growth.",
+            "question": "\nWhere should I begin?",
+            "to_load_history": []
+        },
+        "response": "Starting to invest in stocks for long-term growth is a great decision, especially at your age. Here are some steps and tips to help you get started:\n\n### 1. Educate Yourself\n- **Understand the Basics:** Familiarize yourself with fundamental concepts such as stocks, bonds, ETFs, mutual funds, diversification, and market capitalization.\n- **Read Books and Resources:** Consider reading books like \u201cThe Intelligent Investor\u201d by Benjamin Graham or \u201cA Random Walk Down Wall Street\u201d by Burton Malkiel. Websites like Investopedia and The Motley Fool can also provide valuable insights.\n\n### 2. Set Financial Goals\n- **Define Your",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.33333333333333337,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 35 year old software engineer.\nI'm looking to invest a lump sum amount for short-term gains.",
+            "question": "\nWhat's your opinion on the recent performance of Tesla?",
+            "to_load_history": []
+        },
+        "response": "As of my last update in October 2023, Tesla's stock performance and market position have been influenced by various factors, including production capacity, demand for electric vehicles (EVs), regulatory changes, and competition within the EV market. \n\nThe price increase for Tesla's Model Y and Model 3 variants in Canada could be seen as a positive sign for the company's pricing power and demand. Price increases often indicate strong demand for a product, which can lead to higher revenue per vehicle sold. However, it could also impact affordability and demand elasticity, especially in a competitive market.\n\nFor short-term investments, here are a few considerations regarding Tesla:",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.25,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 50 year old retiree.\nI want to ensure a stable income through my investments.",
+            "question": "\nDo you think dividend stocks are a good option at this time?",
+            "to_load_history": []
+        },
+        "response": "Dividend stocks can be a suitable investment option for retirees seeking stable income. Here are several factors to consider:\n\n1. **Income Stability**: Dividend-paying stocks can provide a consistent income stream, which can be particularly beneficial during retirement. Look for companies with a history of stable or increasing dividends.\n\n2. **Diversification**: To manage risk, consider diversifying your dividend stock investments across different sectors. This can help protect your income if one sector underperforms.\n\n3. **Inflation Hedge**: Dividend stocks have the potential to provide growth through increasing dividend payouts, which can help combat the effects of inflation.\n\n4. **Quality Companies",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 29 year old medical student.\nI want to start investing but I'm concerned about market risks.",
+            "question": "\nWhat's your take on stablecoins in the cryptocurrency market?",
+            "to_load_history": []
+        },
+        "response": "Investing in stablecoins can be an interesting option, especially if you're looking for a way to mitigate some of the risks associated with the more volatile aspects of the cryptocurrency market. Here are some key points to consider regarding stablecoins and their potential role in your investment strategy:\n\n### What are Stablecoins?\n- **Pegged Value**: Stablecoins are cryptocurrencies designed to maintain a stable value by pegging them to a reserve asset, typically a fiat currency like the US dollar. Common examples include Tether (USDT), USD Coin (USDC), and DAI.\n- **Reduced Volatility**: Unlike traditional cryptocurrencies such as Bitcoin or",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.4,
+            "answer_similarity": 1.0,
+            "faithfulness": 1.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 32 year old marketing manager.\nI've been following the electric vehicle industry closely.",
+            "question": "\nDo you think it's a good idea to invest in a diverse EV portfolio?",
+            "to_load_history": []
+        },
+        "response": "Investing in a diverse electric vehicle (EV) portfolio could be a prudent decision, especially given the growth of the industry that you've noted. Here are some factors to consider when evaluating this investment:\n\n1. **Market Growth**: The increase in EV sales, as you've highlighted, indicates strong consumer interest and a shift towards more sustainable transportation. The growth rate of 7.3% year-on-year signals that the market is expanding, which can create opportunities for investors.\n\n2. **Government Incentives**: Many governments around the world are providing incentives for EV purchases, which can further stimulate demand. Keep an eye on legislation and incentives that",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.75,
+            "ragas_score": 0.5454545454545455
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 40 year old real estate agent.\nI'm looking to invest some savings in the financial markets.",
+            "question": "\nWhat's your opinion on gold as a safe-haven investment?",
+            "to_load_history": []
+        },
+        "response": "Investing in gold can be a prudent choice, particularly for individuals seeking a safe-haven asset. Here are some factors to consider regarding gold as an investment:\n\n1. **Inflation Hedge**: Gold has historically been viewed as a hedge against inflation. When currency values decline, gold often retains its purchasing power, making it appealing during economic uncertainty.\n\n2. **Market Volatility**: In times of market volatility or geopolitical instability, gold tends to perform well as investors flock to it for safety. Its price often rises when confidence in other asset classes, like stocks, declines.\n\n3. **Diversification**: Including gold in your investment",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.5,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 25 year old graduate student.\nI want to explore investing in renewable energy companies.",
+            "question": "\nDo you think solar energy stocks are a good bet right now?",
+            "to_load_history": []
+        },
+        "response": "Investing in renewable energy companies, particularly solar energy stocks, can be a promising opportunity given the global shift towards sustainable energy sources. Here are some factors to consider when evaluating solar energy stocks:\n\n1. **Market Growth**: The renewable energy sector, especially solar energy, has been experiencing significant growth due to increased demand for clean energy, government incentives, and advancements in technology. This trend is expected to continue as more countries and companies commit to reducing carbon emissions.\n\n2. **Government Policies**: Many governments worldwide are implementing policies to promote renewable energy, including tax incentives, subsidies, and renewable energy mandates. Keeping an eye on these policies can",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 31 year old IT professional.\nI'm interested in long-term investments with sustainable growth.",
+            "question": "\nWhat's your take on investing in index funds?",
+            "to_load_history": []
+        },
+        "response": "Investing in index funds can be a great choice for long-term growth, especially for someone in your position as a 31-year-old IT professional. Here are a few reasons why:\n\n1. **Diversification**: Index funds typically track a broad market index, such as the S&P 500. This means your investment is spread across many different companies and sectors, reducing the risk associated with individual stocks.\n\n2. **Lower Costs**: Index funds usually have lower expense ratios compared to actively managed funds. This can lead to higher net returns over time, as more of your money stays invested rather than going toward management fees.\n\n3.",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 22 year old recent college graduate.\nI want to start investing, but I'm concerned about economic uncertainty.",
+            "question": "\nWhat do you think about investing in blue-chip stocks?",
+            "to_load_history": []
+        },
+        "response": "Investing in blue-chip stocks can be a solid strategy, especially for a young investor like you who is just starting out. Blue-chip stocks typically belong to well-established companies with a history of reliable performance, strong financials, and often pay dividends. Here are several reasons why investing in blue-chip stocks could be a good idea, particularly given the context you provided:\n\n1. **Stability**: Blue-chip companies tend to be more resilient during economic downturns compared to smaller or less established stocks. Their established market presence and financial strength can provide some level of protection in uncertain economic times.\n\n2. **Dividend Income**: Many blue-chip",
+        "scores": {
+            "context_relevancy": 0.6666666666666666,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.4285714285714286,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 55 year old business owner.\nI'm considering investing a portion of my profits in the commodities market.",
+            "question": "\nWhat's your opinion on the current oil market situation?",
+            "to_load_history": []
+        },
+        "response": "As of my last knowledge update in October 2023, the oil market has been influenced by several factors, including geopolitical tensions, OPEC+ production decisions, and global economic conditions. Here are some key points to consider regarding the current oil market situation:\n\n1. **Geopolitical Factors**: Tensions in oil-producing regions can lead to volatility in oil prices. Keep an eye on developments in the Middle East, Russia, and other significant oil-producing countries, as conflicts or sanctions can affect supply and pricing.\n\n2. **Supply and Demand Dynamics**: The balance of supply and demand is crucial. If global economic growth is strong,",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.75,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I am a 27 year old freelance writer.\nI have some savings and I'm considering investing in individual stocks.",
+            "question": "\nWhat's your opinion on the future of electric car companies?",
+            "to_load_history": []
+        },
+        "response": "Investing in electric vehicle (EV) companies can be an intriguing opportunity, especially given the ongoing global shift towards sustainability and clean energy. Here are some key points to consider regarding the future of electric car companies:\n\n1. **Market Growth**: The EV market is expected to continue growing rapidly due to increasing consumer demand, government incentives, and a global push towards reducing carbon emissions. Many countries have set ambitious targets for phasing out internal combustion engine vehicles, which could further accelerate EV adoption.\n\n2. **Technological Advancements**: Innovations in battery technology, such as solid-state batteries, are likely to improve the range, charging speed,",
+        "scores": {
+            "context_relevancy": 0.0,
+            "context_recall": 0.25,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.6666666666666667,
+            "ragas_score": 0.0
+        }
+    },
+    {
+        "input_payload": {
+            "about_me": "I'm a 34 year old insurance agent.\nI'm interested in income-generating investments.",
+            "question": "\nWhat do you think about investing in high-yield bond funds?",
+            "to_load_history": []
+        },
+        "response": "Investing in high-yield bond funds can be a viable strategy for generating income, especially given your interest in income-generating investments. Here are some considerations to keep in mind:\n\n### Pros of High-Yield Bond Funds:\n1. **Higher Income Potential**: High-yield bonds (often referred to as \"junk bonds\") typically offer higher interest rates compared to investment-grade bonds, which can lead to attractive income streams.\n2. **Diversification**: High-yield bond funds can provide exposure to a diverse range of issuers, potentially spreading risk across different sectors and companies.\n3. **Liquidity**: Bond funds are generally more",
+        "scores": {
+            "context_relevancy": 1.0,
+            "context_recall": 0.0,
+            "answer_similarity": 1.0,
+            "faithfulness": 0.0,
+            "ragas_score": 0.0
+        }
+    }
+]

@@ -176,20 +176,23 @@ class ContextExtractorChain(Chain):
 class FinancialBotQAChain(Chain):
     """This custom chain handles LLM generation upon given prompt"""
 
-    lm_function: Any = PrivateAttr()
+    _lm_function: Any = PrivateAttr()
+
 
     def __init__(self, lm_function):
         super().__init__()
-        self.lm_function = lm_function
+        self._lm_function = lm_function
 
     @property
     def input_keys(self) -> List[str]:
         """Returns a list of input keys for the chain"""
+
         return ["context"]
 
     @property
     def output_keys(self) -> List[str]:
         """Returns a list of output keys for the chain"""
+
         return ["answer"]
 
     def _call(
@@ -204,7 +207,7 @@ class FinancialBotQAChain(Chain):
         prompt = inputs["about_me"] + inputs["question"] + inputs["context"] + inputs["chat_history"]
 
         start_time = time.time()
-        response = self.lm_function(prompt)
+        response = self._lm_function(prompt)
         end_time = time.time()
         duration_milliseconds = (end_time - start_time) * 1000
 
