@@ -4,7 +4,6 @@ import logging
 import fire
 from datasets import Dataset
 
-from financial_bot.evaluate_stocks import get_stock_metrics
 from tools.bot import load_bot
 
 logger = logging.getLogger(__name__)
@@ -86,14 +85,14 @@ def run_local(
             output_context = bot.finbot_chain.chains[0].run(input_payload)
             response = bot.answer(**input_payload)
             
-            rate, did_outperform = get_stock_metrics(response, date_start, date_end, verbose=False)
-            rates.append(rate)
-            did_outperforms.append(did_outperform)
+            # rate, did_outperform = get_stock_metrics(response, date_start, date_end, verbose=False)
+            # rates.append(rate)
+            # did_outperforms.append(did_outperform)
             
-            logger.info("Score=%s", evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics))
+            # logger.info("Score=%s", evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics))
 
-            logger.info(f"Mean rate: {sum(rates)/len(rates)}")
-            logger.info(f"Mean outperforms: {sum(did_outperforms)/len(did_outperforms)}")
+            # logger.info(f"Mean rate: {sum(rates)/len(rates)}")
+            # logger.info(f"Mean outperforms: {sum(did_outperforms)/len(did_outperforms)}")
     
             score = evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics)
             logger.info("Score=%s", score)
@@ -110,8 +109,8 @@ def run_local(
                 "GT": elem["response"],
                 "response": response,
                 "scores": score,
-                "rate": rate,
-                "did_outperform": did_outperform
+                # "rate": rate,
+                # "did_outperform": did_outperform
             })
 
     # Calculate averages
