@@ -2,20 +2,16 @@ import logging
 from pathlib import Path
 from typing import Iterable, List, Tuple
 
-from langchain import chains
-from langchain.memory import ConversationBufferWindowMemory
-
 from financial_bot import constants
-from financial_bot.chains import (
-    ContextExtractorChain,
-    FinancialBotQAChain,
-    OptimizePromptChain,
-    StatelessMemorySequentialChain,
-)
+from financial_bot.chains import (ContextExtractorChain, FinancialBotQAChain,
+                                  OptimizePromptChain,
+                                  StatelessMemorySequentialChain)
 from financial_bot.embeddings import EmbeddingModelSingleton
 from financial_bot.models import build_gpt_pipeline
 from financial_bot.qdrant import build_qdrant_client
 from financial_bot.template import get_llm_template
+from langchain import chains
+from langchain.memory import ConversationBufferWindowMemory
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +32,7 @@ class FinancialBot:
         streaming (bool): Whether to use the Hugging Face streaming API for inference.
         embedding_model_device (str): The device to use for the embedding model.
         debug (bool): Whether to enable debug mode.
+        baseline (bool): Whether to use the baseline chain.
 
     Attributes:
         finbot_chain (Chain): The language chain that generates responses to user inputs.
@@ -52,6 +49,7 @@ class FinancialBot:
         vector_db_search_topk: int = constants.VECTOR_DB_SEARCH_TOPK,
         model_cache_dir: Path = constants.CACHE_DIR,
         streaming: bool = False,
+        baseline: bool = False,
         embedding_model_device: str = "cuda:0",
         debug: bool = False,
     ):
@@ -64,7 +62,7 @@ class FinancialBot:
         self._vector_collection_name = vector_collection_name
         self._vector_db_search_topk = vector_db_search_topk
         self._debug = debug
-
+        self._baseline = baseline
         self._qdrant_client = build_qdrant_client()
 
         self._embd_model = EmbeddingModelSingleton(
@@ -100,7 +98,7 @@ class FinancialBot:
         This embedded question is then used to retrieve relevant context from the VectorDB.
         The output of this chain will be a dict payload.
 
-        2. Optimize Prompt: This stage optimizes the prompt using the context extracted in the previous step.
+        2. if self._baseline is False; Optimize Prompt: This stage optimizes the prompt using the context extracted in the previous step.
 
         3. LLM Generator: Once the context is extracted and the prompt is optimized,
         this stage uses it to format a full prompt for the LLM and
@@ -115,8 +113,8 @@ class FinancialBot:
         -----
         The actual processing flow within the chain can be visualized as:
         [about: str][question: str] > ContextChain >
-        [about: str][question:str] + [context: str] > OptimizePromptChain >
-        [optimized_prompt: str] + [context: str] > FinancialChain >
+        [about: str][question:str] + [context: str] > OptimizePromptChain > # if baseline is False
+        [about: str][optimized_question:str] + [context: str] > FinancialChain >
         [answer: str]
         """
 
@@ -157,6 +155,11 @@ class FinancialBot:
         )
 
         logger.info("Building 4/4 - Connecting chains into SequentialChain")
+        if self._baseline:
+            chains = [context_retrieval_chain, llm_generator_chain]
+        else:
+            chains = [context_retrieval_chain, optimize_prompt_chain, llm_generator_chain]
+        
         seq_chain = StatelessMemorySequentialChain(
             history_input_key="to_load_history",
             memory=ConversationBufferWindowMemory(
@@ -165,7 +168,7 @@ class FinancialBot:
                 output_key="answer",
                 k=3,
             ),
-            chains=[context_retrieval_chain, optimize_prompt_chain, llm_generator_chain],
+            chains=chains,
             input_variables=["about_me", "question", "to_load_history"],
             output_variables=["answer"],
             verbose=True,
@@ -173,13 +176,12 @@ class FinancialBot:
 
         logger.info("Done building SequentialChain.")
         logger.info("Workflow:")
-        logger.info(
-            """
-            [about: str][question: str] > ContextChain > 
-            [about: str][question:str] + [context: str] > OptimizePromptChain >
-            [about: str][question:str] + [context: str] > FinancialChain > 
-            [answer: str]
-            """
+        logger.info( 
+            "[about: str][question: str] > ContextChain > " + \
+            ("[about: str][question:str] + [context: str] > OptimizePromptChain >" if not self._baseline else "") + \
+            "[about: str][optimized_question:str] + [context: str] > FinancialChain > " + \
+            "[answer: str]"
+            
         )
 
         return seq_chain

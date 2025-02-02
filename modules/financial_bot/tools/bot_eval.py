@@ -3,7 +3,6 @@ import logging
 
 import fire
 from datasets import Dataset
-
 from tools.bot import load_bot
 
 logger = logging.getLogger(__name__)
@@ -31,32 +30,28 @@ def evaluate_w_ragas(query: str, context: list[str], output: str, ground_truth: 
 
 def run_local(
     testset_path: str,
+    output_path: str = "results.json",
+    baseline: bool = False
 ):
     """
     Run the bot locally in production or dev mode.
 
     Args:
         testset_path (str): A string containing path to the testset.
-
+        baseline (bool): Whether to use the baseline chain.
     Returns:
         str: A string containing the bot's response to the user's question.
     """
 
-    bot = load_bot(model_cache_dir=None)
+    bot = load_bot(model_cache_dir=None, baseline=baseline)
+    
     # Import ragas only after loading the environment variables inside load_bot()
-    from ragas.metrics import (  # context_entity_recall,; context_relevancy,; context_utilization,
-        answer_similarity,
-        context_recall,
-        faithfulness,
-    )
+    from ragas.metrics import answer_similarity, context_recall, faithfulness
     from ragas.metrics.context_precision import context_relevancy
     metrics = [
-        #context_utilization,
         context_relevancy,
         context_recall,
         answer_similarity,
-        #context_entity_recall,
-        #answer_correctness,
         faithfulness
     ]
 
@@ -68,12 +63,7 @@ def run_local(
         'faithfulness': 0.0
     }
     count = 0
-
     results = []
-    rates = []
-    did_outperforms = []
-    date_start = "2024-01-21"
-    date_end = "2024-01-28"
     with open(testset_path, "r") as f:
         data = json.load(f)
         for elem in data:
@@ -85,18 +75,9 @@ def run_local(
             output_context = bot.finbot_chain.chains[0].run(input_payload)
             response = bot.answer(**input_payload)
             
-            # rate, did_outperform = get_stock_metrics(response, date_start, date_end, verbose=False)
-            # rates.append(rate)
-            # did_outperforms.append(did_outperform)
-            
-            # logger.info("Score=%s", evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics))
-
-            # logger.info(f"Mean rate: {sum(rates)/len(rates)}")
-            # logger.info(f"Mean outperforms: {sum(did_outperforms)/len(did_outperforms)}")
-    
             score = evaluate_w_ragas(query=elem["question"], context=output_context.split('\n'), output=response, ground_truth=elem["response"], metrics=metrics)
             logger.info("Score=%s", score)
-
+            
             # Accumulate scores
             for key in total_scores:
                 total_scores[key] += score.get(key, 0.0)
@@ -109,8 +90,6 @@ def run_local(
                 "GT": elem["response"],
                 "response": response,
                 "scores": score,
-                # "rate": rate,
-                # "did_outperform": did_outperform
             })
 
     # Calculate averages
@@ -118,7 +97,7 @@ def run_local(
     logger.info("Average Scores=%s", average_scores)
 
     # Write results to a JSON file
-    with open("results.json", "w") as outfile:
+    with open(output_path, "w") as outfile:
         json.dump(results, outfile, indent=4)
 
     return response

@@ -48,6 +48,7 @@ def load_bot(
     model_cache_dir: str = "./model_cache",
     embedding_model_device: str = "cuda:0",
     debug: bool = False,
+    baseline: bool = False
 ):
     """
     Load the financial assistant bot in production or development mode based on the `debug` flag
@@ -83,6 +84,7 @@ def load_bot(
         model_cache_dir=Path(model_cache_dir) if model_cache_dir else None,
         embedding_model_device=embedding_model_device,
         debug=debug,
+        baseline=baseline
     )
 
     return bot
@@ -92,6 +94,7 @@ def load_bot_dev(
     env_file_path: str = ".env",
     logging_config_path: str = "logging.yaml",
     model_cache_dir: str = "./model_cache",
+    baseline: bool = False
 ):
     """
     Load the Financial Assistant Bot in dev mode: the embedding model runs on CPU and the LLM is mocked.
@@ -100,7 +103,7 @@ def load_bot_dev(
         env_file_path (str): Path to the environment file.
         logging_config_path (str): Path to the logging configuration file.
         model_cache_dir (str): Path to the directory where the model cache is stored.
-
+        baseline (bool, optional): A boolean indicating whether to run the bot in baseline mode. Defaults to False.
     Returns:
         The loaded Financial Assistant Bot in dev mode.
     """
@@ -111,6 +114,7 @@ def load_bot_dev(
         model_cache_dir=model_cache_dir,
         embedding_model_device="cpu",
         debug=True,
+        baseline=baseline
     )
 
 
@@ -164,6 +168,7 @@ def run_local(
     question: str,
     history: List[Tuple[str, str]] = None,
     debug: bool = False,
+    baseline: bool = False
 ):
     """
     Run the bot locally in production or dev mode.
@@ -174,15 +179,15 @@ def run_local(
         history (List[Tuple[str, str]], optional): A list of tuples containing the user's previous questions
             and the bot's responses. Defaults to None.
         debug (bool, optional): A boolean indicating whether to run the bot in debug mode. Defaults to False.
-
+        baseline (bool, optional): A boolean indicating whether to run the bot in baseline mode. Defaults to False.
     Returns:
         str: A string containing the bot's response to the user's question.
     """
 
     if debug is True:
-        bot = load_bot_dev(model_cache_dir=None)
+        bot = load_bot_dev(model_cache_dir=None, baseline=baseline)
     else:
-        bot = load_bot(model_cache_dir=None)
+        bot = load_bot(model_cache_dir=None, baseline=baseline)
 
     inputs = {
         "about_me": about_me,
@@ -228,6 +233,47 @@ def _run(**inputs):
 
     return response
 
+def run_eval_local(
+    testset_path: str,
+    output_path: str = "responses.json",
+    baseline: bool = False
+):
+    """
+    Run the bot locally in production or dev mode.
 
+    Args:
+        testset_path (str): A string containing path to the testset.
+        output_path (str): A string containing path to save the responses.
+
+    Returns:
+        None
+    """
+    import json
+    
+    bot = load_bot(model_cache_dir=None, baseline=baseline)
+    responses = []
+
+    with open(testset_path, "r") as f:
+        data = json.load(f)
+        for elem in data:
+            input_payload = {
+                "about_me": elem["about_me"],
+                "question": elem["question"],
+                "to_load_history": [],
+            }
+            output_context = bot.finbot_chain.chains[0].run(input_payload)
+            response = bot.answer(**input_payload)
+            responses.append({
+                "question": elem["question"],
+                "output_context": output_context,
+                "response": response,
+                "ground_truth": elem["response"]
+            })
+
+    with open(output_path, "w") as f:
+        json.dump(responses, f, indent=4)
+
+    logger.info("Responses saved to %s", output_path)
+    
 if __name__ == "__main__":
     fire.Fire(run_local)

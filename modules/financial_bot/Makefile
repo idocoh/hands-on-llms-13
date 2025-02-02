@@ -60,10 +60,19 @@ run_ui_dev:
 	poetry run gradio tools/ui.py --debug
 
 eval_bot:
-	@echo "Evaluating financial_bot..."
+	@echo "Evaluating DSPY financial_bot..."
 
 	poetry run python -m tools.bot_eval \
 		--testset_path "../training_pipeline/dataset/testing_data.json"
+		--output_path "results.json"
+
+eval_baseline_bot:
+	@echo "Evaluating Baseline financial_bot..."
+
+	poetry run python -m tools.bot_eval \
+		--testset_path "../training_pipeline/dataset/testing_data.json" \
+		--output_path "results_baseline.json" \
+		--baseline True
 
 
 # === Beam ===
