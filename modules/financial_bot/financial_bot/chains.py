@@ -204,7 +204,7 @@ class FinancialBotQAChain(Chain):
 
         inputs = self.clean(inputs)
         print(inputs.keys())
-        prompt = inputs["about_me"] + inputs["question"] + inputs["context"] + inputs["chat_history"]
+        prompt = inputs["about_me"] + inputs["question"] + inputs["context"] + inputs["chat_history"] + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided"
 
         start_time = time.time()
         response = self._lm_function(prompt)
@@ -226,10 +226,9 @@ class FinancialBotQAChain(Chain):
 
 class OptimizePromptChain(Chain):
     """This custom chain uses dspy for APE."""
-
-    venv_path = "/home/student/hands-on-llms-13/modules/financial_bot/dspy_env"
-    target_directory = "/home/student/hands-on-llms-13/modules/financial_bot/financial_bot"
-    command_base = ["python", "dspy_ape.py", "--prompt"]
+    target_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    venv_path = os.path.join(target_directory, "venv_dspy")
+    command_base = ["python", "financial_bot/dspy_ape.py", "--prompt"]
 
     @property
     def input_keys(self) -> List[str]:

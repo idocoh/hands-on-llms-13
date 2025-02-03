@@ -187,3 +187,4 @@ logs/
 gradio_cached_examples
 trust_policy.json
 dspy_env/*
+modules/financial_bot/venv_dspy/*

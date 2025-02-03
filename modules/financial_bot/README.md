@@ -8,7 +8,7 @@ Inference pipeline that uses [LangChain](https://github.com/langchain-ai/langcha
 * persists the chat history into memory 
 * logs the prompt & answer into [Comet ML's](https://www.comet.com/site/products/llmops/?utm_source=thepauls&utm_medium=partner&utm_content=github) LLMOps monitoring feature
 
-The **inference pipeline** is **deployed** using [Beam](https://docs.beam.cloud/deployment/rest-api?utm_source=thepauls&utm_medium=partner&utm_content=github) as a serverless GPU infrastructure, as a RESTful API. Also, it is wrapped under a UI for demo purposes, implemented in [Gradio](https://www.gradio.app/).
+The **inference pipeline** is wrapped under a UI for demo purposes, implemented in [Gradio](https://www.gradio.app/).
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ The **inference pipeline** is **deployed** using [Beam](https://docs.beam.cloud/
     - [2.2. Qdrant & Beam](#21-qdrant--beam)
 - [3. Usage](#3-usage)
     - [3.1. Local](#31-local)
-    - [3.2. Deploy to Beam as a RESTful API](#32-deploy-to-beam)
+    - [3.2. Evaluation](#32-evaluation)
     - [3.3. Gradio UI](#33-gradio-ui)
     - [3.4. Linting & Formatting](#34-linting--formatting)
 
@@ -50,11 +50,7 @@ Installing all the other dependencies is as easy as running:
 ```shell
 make install
 ```
-
-When developing run:
-```shell
-make install_dev
-```
+This also create a seperate virtual env for running DSPY package, which dependencies can not be resolved toghether with this module dependencies. 
 
 Prepare credentials:
 ```shell
@@ -81,33 +77,16 @@ For debugging & testing, run the bot locally with a predefined question, while m
 make run_dev
 ```
 
-## 3.2. Beam | RESTful API
-`deploy the financial bot as a RESTful API to Beam [optional]` 
+## 3.2. Evaluation
 
-**First**, you must set up Beam, as explained in the [Setup External Services](https://github.com/ishai-rosenberg/hands-on-llms/tree/main#2-setup-external-services) section.
-
-Deploy the bot under a RESTful API using Beam:
+Run and Evaluate the financial_bot using DSPY optimizer, using a defined testset:
 ```shell
-make deploy_beam
+make eval_bot
 ```
 
-For debugging & testing, deploy the bot under a RESTful API using Beam while mocking the LLM:
+Run and Evaluate the financial_bot baseline, using a defined testset, refined to the stock recomendation problem:
 ```shell
-make deploy_beam_dev
-```
-
-To test the deployment, make a request to the bot calling the RESTful API as follows (the first request will take a while as the LLM needs to load):
-```shell
-export BEAM_DEPLOYMENT_ID=<BEAM_DEPLOYMENT_ID> # e.g., <xxxxx> from https://<xxxxx>.apps.beam.cloud
-export BEAM_AUTH_TOKEN=<BEAM_AUTH_TOKEN> # e.g., <xxxxx> from Authorization: Basic <xxxxx>
-
-make call_restful_api DEPLOYMENT_ID=${BEAM_DEPLOYMENT_ID} TOKEN=${BEAM_AUTH_TOKEN} 
-```
-
-**Note:** To find out `BEAM_DEPLOYMENT_ID` and `BEAM_AUTH_TOKEN` navigate to your `financial_bot` or `financial_bot_dev` [Beam app](https://www.beam.cloud/dashboard/apps?utm_source=thepauls&utm_medium=partner&utm_content=github).
-
-**IMPORTANT NOTE 1:** After you finish testing your project, don't forget to stop your Beam deployment. 
-**IMPORTANT NOTE 2:** The financial bot will work only on CUDA-enabled Nvidia GPUs with ~8 GB VRAM. If you don't have one and wish to run the code, you must deploy it to [Beam](https://www.beam.cloud?utm_source=thepauls&utm_medium=partner&utm_content=github). 
+make eval_baseline_bot
 
 ## 3.3. Gradio UI
 

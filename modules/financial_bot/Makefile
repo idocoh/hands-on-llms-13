@@ -7,6 +7,12 @@ install:
 	PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring poetry install && \
 	poetry run pip install torch==2.0.1
 
+	# Create a new virtual environment for dspy
+	@echo "Creating virtual environment for dspy..."
+	python3.10 -m venv venv_dspy && \
+	. venv_dspy/bin/activate && \
+	pip install dspy==2.5.43
+
 install_dev: install
 	PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring poetry install --only dev
 
