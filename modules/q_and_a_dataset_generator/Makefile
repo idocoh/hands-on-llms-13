@@ -18,3 +18,6 @@ embed:
 # backfills the feature group using historical data
 training-data:
 	poetry run python scripts/generate_training_data.py
+
+data-w-stocks:
+	poetry run python scripts/generate_training_data_w_stocks.py

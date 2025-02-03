@@ -1,4 +1,6 @@
+import json
 import os
+import random
 from typing import Dict
 
 import openai
@@ -437,34 +439,49 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 def build_prompt(example: Dict) -> str:
     return PROMPT_TEMPLATE.format(
-        ABOUT_ME=example["about_me"],
+        ABOUT_ME=example["about_me"] + "\nRecommend a stock in the following format:\n[Stock Recommendation]: <Stock Ticker>\n[Justification]: <Why this stock is a good choice>. Make sure that the recommendation is based on the context provided and that you give a <Stock Ticker> in the right format, such as AMZN or AAPL, without the company name in that specific space.",
         CONTEXT=example["context"],
     )
 
 
 def run():
     output = []
+    client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
     for example in tqdm(EXAMPLES):
-        prompt = build_prompt(example)
-        logger.info(f"{prompt=}")
+        for i in range(2):
+            prompt = build_prompt(example)
 
-        response = openai.Completion.create(
-            engine="gpt-3.5-turbo-instruct",     # "text-davinci-003",    # See: https://github.com/iusztinpaul/hands-on-llms/issues/87
-            prompt=prompt,
-            temperature=0,
-            max_tokens=100,
-        )
+            logger.info(f"{example['about_me']}")
 
-        response = response["choices"][0]["text"]
-        logger.info(f"{response=}")
+            response = client.chat.completions.create(
+                model="gpt-4o",  # Upgraded to GPT-4 Omni
+                messages=[
+                    {"role": "system", "content": "You are an expert in stock and crypto markets, providing investment advice."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.6,  # Slight variation, but responses remain focused.
+                max_tokens=200,
+            )
+            
+            generated_text = response.choices[0].message.content
 
-        output.append({**example, "response": response})
+            logger.info(f"{generated_text=}")
 
+            output.append({**example, "response": generated_text})
+
+    # split to train and val randomly
+    random.shuffle(output)
+    split = int(0.8 * len(output))
+    train_data = output[:split]
+    val_data = output[split:]
+    
     # save output as json file
-    import json
-
-    with open(DATA_DIR / "training_data.json", "w") as f:
-        json.dump(output, f, indent=4)
+    with open(DATA_DIR / "training_data_w_stocks.json", "w") as f:
+        json.dump(train_data, f, indent=4)
+        
+    with open(DATA_DIR / "validation_data_w_stocks.json", "w") as f:
+        json.dump(val_data, f, indent=4)
 
 
 if __name__ == "__main__":

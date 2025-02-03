@@ -32,6 +32,11 @@ This dataset should resemble as much as possible the actual questions, and answe
     ```
     $ make training-data
     ```
+
+* Generate sample data for DSPY optimizer
+    ```
+    $ make data-w-stocks
+    ```
 **Note:** If not working due to the error message: "libcudnn.so.8: cannot open shared object file: No such file or directory", try to copy all the "nvidia" prefixed libraries from the training pipeline poetry folder (in the /lib/python3.10/site-packages/ sub-folder), to the same subfolder in this module poetry folder (in the exact same subfolder). The poetry folder can be found by running from the referenced pipeline's folder the following command:
     ```
     $ poetry env list --full-path
