@@ -444,17 +444,16 @@ def build_prompt(example: Dict) -> str:
     )
 
 
-def run():
+def run(train_json: str = "train_data_w_stocks.json", validation_json: str = "validation_data_w_stocks.json"):
     output = []
-    client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-
+    
     for example in tqdm(EXAMPLES):
         for i in range(2):
             prompt = build_prompt(example)
 
             logger.info(f"{example['about_me']}")
 
-            response = client.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-4o",  # Upgraded to GPT-4 Omni
                 messages=[
                     {"role": "system", "content": "You are an expert in stock and crypto markets, providing investment advice."},
@@ -477,12 +476,14 @@ def run():
     val_data = output[split:]
     
     # save output as json file
-    with open(DATA_DIR / "training_data_w_stocks.json", "w") as f:
+    with open(DATA_DIR / train_json, "w") as f:
         json.dump(train_data, f, indent=4)
         
-    with open(DATA_DIR / "validation_data_w_stocks.json", "w") as f:
+    with open(DATA_DIR / validation_json, "w") as f:
         json.dump(val_data, f, indent=4)
+        
+    return train_data, val_data
 
 
 if __name__ == "__main__":
-    run()
+    run(train_json="train_data_w_stocks.json", validation_json="validation_data_w_stocks.json")

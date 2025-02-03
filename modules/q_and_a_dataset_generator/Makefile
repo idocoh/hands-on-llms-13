@@ -20,4 +20,8 @@ training-data:
 	poetry run python scripts/generate_training_data.py
 
 data-w-stocks:
-	poetry run python scripts/generate_training_data_w_stocks.py
+	poetry run python scripts/generate_stock_training_data.py
+
+data-w-stocks-optimized:
+	poetry run python scripts/filter_stock_data_w_stock_metric.py \
+	 --date-recommended 2023-08-21 --last-date 2024-08-21

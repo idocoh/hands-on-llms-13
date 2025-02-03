@@ -3,6 +3,7 @@ import re
 import traceback as tb
 from datetime import datetime
 
+import generate_stock_data
 import yfinance as yf
 from src.paths import DATA_DIR
 
@@ -130,17 +131,14 @@ def is_valid_stock(stock_ticker: str) -> bool:
     except:
         return False
 
-def print_questions_and_recommendations():
+def save_optimized_q_and_a(dataset: list, output_file_path: str, date_recommended: str, last_date: str):
     """
     Reads the dataset, filters valid stock recommendations, and stores the cleaned dataset.
     """
-    with open(file_path, "r") as f:
-        data = json.load(f)
-
     count_invalid = 0
     filtered_data = []
 
-    for example in data:
+    for example in dataset:
         question = example["about_me"].split("\n")[-1]  # Extracts the question
         stock_recommendation = extract_stock_recommendation(example.get("response", ""))
         
@@ -149,9 +147,6 @@ def print_questions_and_recommendations():
             count_invalid += 1
             continue  # Skip invalid stock recommendations
         
-        # Assume dates for now
-        date_recommended = "2023-08-21"
-        last_date = "2024-08-21"
 
         # Check if the stock outperformed the S&P 500
         if not check_stock_performance(stock_recommendation, date_recommended, last_date, verbose=False):
@@ -170,22 +165,19 @@ def print_questions_and_recommendations():
 
     # print how much stocks outperformed out of the valid recommendations
     print(f"Total valid stock recommendations: {len(filtered_data)} that outperformed the S&P 500.")
-    print(f"Total valid stock recommendations: {len(data) - count_invalid}, out of {len(data)} examples.")
-    print(f"Total invalid stock recommendations: {count_invalid}, out of {len(data)} examples.")
+    print(f"Total valid stock recommendations: {len(dataset) - count_invalid}, out of {len(dataset)} examples.")
+    print(f"Total invalid stock recommendations: {count_invalid}, out of {len(dataset)} examples.")
     print(f"Filtered dataset saved to {output_file_path}")
 
+def create_optimized_q_a(train_json: str ="train_data_w_stocks.json", validation_json: str="val_data_w_stocks.json", date_recommended: str = "2023-08-21", last_date: str = "2024-08-21"):
+    train_data, val_data = generate_stock_data.run(train_json=train_json, validation_json=validation_json)
+    
+    train_output_path = DATA_DIR / f"Optimized_{train_json}"
+    save_optimized_q_and_a(train_data, train_output_path, date_recommended, last_date)
+    
+    val_output_path = DATA_DIR / f"Optimized_{validation_json}"
+    save_optimized_q_and_a(val_data, val_output_path, date_recommended, last_date)
 
 if __name__ == "__main__":
-    
-    # # Load the dataset
-    # file_path = DATA_DIR / "train_data_w_stocks.json"
-    # output_file_path = DATA_DIR / "filtered_training_data_based_on_stock_metric.json"
-    
-    # print_questions_and_recommendations()
+    create_optimized_q_a(train_json="train_data_w_stocks.json", validation_json="val_data_w_stocks.json", date_recommended="2023-08-21", last_date="2024-08-21")
 
-    import dspy
-    from dspy.chain_of_thought import ChainOfThought as CoT
-    # cot = dspy.ChainOfThought("question -> answer")
-    
-    cot = CoT() #dspy.ChainOfThought("question -> answer")
-    cot.load("/home/devel/temp/school/llmops/hands-on-llms-13/mipro_zeroshot_optimized_v0.json")
