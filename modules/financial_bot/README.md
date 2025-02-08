@@ -87,6 +87,7 @@ make eval_bot
 Run and Evaluate the financial_bot baseline, using a defined testset, refined to the stock recomendation problem:
 ```shell
 make eval_baseline_bot
+```
 
 ## 3.3. Gradio UI
 
