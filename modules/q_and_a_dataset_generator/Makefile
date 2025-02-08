@@ -20,7 +20,7 @@ training-data:
 	poetry run python scripts/generate_training_data.py
 
 data-w-stocks:
-	poetry run python scripts/generate_stock_training_data.py
+	poetry run python scripts/generate_stock_data.py
 
 data-w-stocks-optimized:
 	poetry run python scripts/filter_stock_data_w_stock_metric.py \
