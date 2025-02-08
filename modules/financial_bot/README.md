@@ -84,7 +84,7 @@ Check out the [Setup External Services](https://github.com/ishai-rosenberg/hands
 
 ## 3.1. Local
 
-Run the bot locally with a predefined question:
+Run the bot locally with the DSPy optimizer and with a predefined question:
 ```shell
 make run
 ```
