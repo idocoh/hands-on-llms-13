@@ -11,7 +11,7 @@ lm = dspy.LM("openai/gpt-4o-mini")
 dspy.configure(lm=lm)
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-OPTIMIZER_PATH = os.path.join(ROOT_DIR, "mipro_zeroshot_optimized_v2.json")
+OPTIMIZER_PATH = os.path.join(ROOT_DIR, "mipro_zeroshot_optimized.json")
 
 PROMPT_KEYS = ["about_me", "context", "question"]
 
