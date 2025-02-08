@@ -26,6 +26,13 @@ add_dev:
 	PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring poetry add --group dev $(package)
 
 
+# === DSPy ===
+
+dspy_train:
+	@echo "Running DSPy train..."
+
+	poetry run financial_bot.train_dspy_optimizer.py
+
 # === Run ===
 
 run:

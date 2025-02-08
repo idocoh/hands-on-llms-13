@@ -90,4 +90,4 @@ def train_dspy_optimizer(data_path):
     zeroshot_optimized_program.save(OPTIMIZER_PATH)
 
 if __name__ == "__main__":
-    train_dspy_optimizer("modules/financial_bot/financial_bot/data/official_train.json")
+    train_dspy_optimizer("modules/q_and_a_dataset_generator/data/Optimized_train_data_w_stocks.json")

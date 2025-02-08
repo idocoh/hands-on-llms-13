@@ -58,7 +58,22 @@ cp .env.example .env
 ```
 --> and complete the `.env` file with your [external services credentials](https://github.com/ishai-rosenberg/hands-on-llms/tree/main#2-setup-external-services).
 
-## 2.2. Qdrant & Beam
+## 2.2. DSPy
+
+You can run the financial bot in 2 modes:
+1. Baseline: in this mode the financial bot will run WITHOUT our DSPy optimization.
+2. DSPy Optimized: in this mode the financial bot will run WITH our DSPy optimization.
+
+If you want to run the DSPy Optimized mode you first need to train the DSPy optimizer, and then use it.
+
+You can train the DSPy optimizer by running:
+```shell
+make dspy_train
+```
+
+This will 
+
+## 2.3. Qdrant & Beam
 
 Check out the [Setup External Services](https://github.com/ishai-rosenberg/hands-on-llms/tree/main#2-setup-external-services) section to see how to create API keys for them.
 
