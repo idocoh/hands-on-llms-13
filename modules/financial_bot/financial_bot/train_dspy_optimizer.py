@@ -7,7 +7,7 @@ from dspy.teleprompt import MIPROv2
 lm = dspy.LM("openai/gpt-4o-mini")
 dspy.configure(lm=lm)
 
-OPTIMIZER_PATH = "modules/financial_bot/financial_bot/mipro_zeroshot_optimized_v0.json"
+OPTIMIZER_PATH = "modules/financial_bot/financial_bot/mipro_zeroshot_optimized.json"
 
 a = 0.01
 
