@@ -36,7 +36,7 @@ def optimize_prompt(program, trainset, devset):
     # Initialize optimizer
     teleprompter = MIPROv2(
         metric=our_metric,
-        auto="light",  # Can choose between light, medium, and heavy optimization runs
+        auto="medium",  # Can choose between light, medium, and heavy optimization runs
     )
 
     # Optimize program
