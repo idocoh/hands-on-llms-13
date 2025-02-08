@@ -5,6 +5,7 @@
 
 ## Table of Contents
 
+- [0. Our Improvment](#0-our-improvment)
 - [1. Building Blocks](#1-building-blocks)
     - [1.1. Training Pipeline](#11-training-pipeline)
     - [1.2. Streaming Real-time Pipeline](#12-streaming-real-time-pipeline)
@@ -22,6 +23,23 @@
 - [6. Contributors & Teachers](#7-contributors--teachers)
 
 ------
+
+
+## 0. Our Improvment
+
+We decided to add APE by using DSPy to the aleady existing implementation of the financial bot.
+You can find the following changes in the repository:
+* In the modules/q_and_a_dataset_generator directory, we have added the following commands for data generation:
+  * ```make data-w-stocks```: Generates q&a data that matches our template.
+  * ```make data-w-stocks-optimized```: Filters the data.
+
+After a successful run of the data generation you can find the modules/q_and_a_dataset_generator/data/Optimized_train_data_w_stocks.json file that will be used next.
+* In the modules/financial_bot directory, we have added the following commands for DSPy:
+  * ```make dspy_train```: Creates the DSPy optimizer that will be used as part of the APE.
+  * ```make eval_bot```: Evaluates the financial bot with the APE.
+  * ```make eval_baseline_bot```: Evaluates the financial bot baseline (with the APE).
+ 
+Note that all the other commands (such as ```make run```) can be used as they were used before. They will apply the same and were adjust to use our APE improvment by default.
 
 
 ## 1. Building Blocks
