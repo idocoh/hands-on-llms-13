@@ -15,7 +15,8 @@ The **inference pipeline** is wrapped under a UI for demo purposes, implemented 
 - [1. Motivation](#1-motivation)
 - [2. Install](#2-install)
     - [2.1. Dependencies](#21-dependencies)
-    - [2.2. Qdrant & Beam](#21-qdrant--beam)
+    - [2.2. DSPy](#22-dspy)
+    - [2.3. Qdrant & Beam](#23-qdrant--beam)
 - [3. Usage](#3-usage)
     - [3.1. Local](#31-local)
     - [3.2. Evaluation](#32-evaluation)
@@ -71,7 +72,8 @@ You can train the DSPy optimizer by running:
 make dspy_train
 ```
 
-This will 
+This will create the optimier at mipro_zeroshot_optimized.json.
+Now, when you run the bot (not as Baseline), the DSPy optimizer will be used.
 
 ## 2.3. Qdrant & Beam
 
